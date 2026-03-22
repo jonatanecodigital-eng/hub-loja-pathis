@@ -3,156 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HUB de Anúncios — Loja Pathis</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>HUB de Anúncios — Loja pathis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #0a0a0a;
-    color: #e0e0e0;
-    min-height: 100vh;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* HEADER */
-  .header {
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-    border-bottom: 1px solid #222;
-    padding: 2.5rem 2rem 2rem;
-    text-align: center;
-  }
-  .header-logo {
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: #00e5a0;
-    margin-bottom: 0.75rem;
-  }
-  .header h1 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  .header-meta {
-    font-size: 0.85rem;
-    color: #666;
-  }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0d0d0d;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
 
-  /* STATS BAR */
-  .stats {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1.5rem 2rem;
-    background: #111;
-    border-bottom: 1px solid #1e1e1e;
-    flex-wrap: wrap;
-  }
-  .stat {
-    text-align: center;
-  }
-  .stat-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #00e5a0;
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: #555;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 0.25rem;
-  }
+/* TOPBAR */
+.topbar {
+  background: #111;
+  border-bottom: 1px solid #222;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.topbar-brand {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #555;
+}
+.topbar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.topbar-meta {
+  font-size: 0.78rem;
+  color: #444;
+}
 
-  /* GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.25rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
+/* STATS */
+.stats-bar {
+  background: #111;
+  border-bottom: 1px solid #1a1a1a;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #4ade80;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
 
-  /* CARD */
-  .card {
-    background: #141414;
-    border: 1px solid #1e1e1e;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: #00e5a0;
-  }
-  .card-img {
-    width: 100%;
-    height: 180px;
-  }
-  .card-info {
-    padding: 1rem;
-  }
-  .badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #00e5a0;
-    background: rgba(0,229,160,0.1);
-    border: 1px solid rgba(0,229,160,0.2);
-    border-radius: 20px;
-    padding: 0.2rem 0.6rem;
-    margin-bottom: 0.6rem;
-    letter-spacing: 0.05em;
-  }
-  .card-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #f0f0f0;
-    line-height: 1.4;
-    margin-bottom: 0.5rem;
-  }
-  .card-body {
-    font-size: 0.82rem;
-    color: #777;
-    line-height: 1.5;
-  }
+/* MAIN */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-  /* FOOTER */
-  .footer {
-    text-align: center;
-    padding: 2rem;
-    color: #333;
-    font-size: 0.8rem;
-    border-top: 1px solid #1a1a1a;
-    margin-top: 2rem;
-  }
-  .footer span { color: #00e5a0; }
+/* CAMPAIGN BLOCK */
+.campaign-block {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.campaign-header {
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1e1e1e;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.campaign-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.campaign-icon {
+  width: 38px;
+  height: 38px;
+  background: #1e1e1e;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.campaign-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+.campaign-badges {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+.badge--active {
+  background: rgba(74,222,128,0.15);
+  color: #4ade80;
+  border: 1px solid rgba(74,222,128,0.25);
+}
+.badge--obj {
+  background: rgba(139,92,246,0.15);
+  color: #a78bfa;
+  border: 1px solid rgba(139,92,246,0.25);
+}
+.campaign-count {
+  font-size: 0.82rem;
+  color: #555;
+  white-space: nowrap;
+}
 
-  @media (max-width: 600px) {
-    .grid { padding: 1rem; gap: 1rem; }
-    .stats { gap: 1.5rem; }
-  }
+/* SECTION LABEL */
+.campaign-section-label {
+  padding: 0.75rem 1.5rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+/* ADS GRID */
+.ads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 0 1.5rem 1.5rem;
+}
+
+/* AD CARD */
+.ad-card {
+  background: #1a1a1a;
+  border: 1px solid #252525;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ad-card:hover {
+  border-color: #4ade80;
+  transform: translateY(-3px);
+}
+.ad-thumb {
+  width: 100%;
+  height: 160px;
+  background: #222;
+}
+.ad-thumb--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  font-size: 2rem;
+  opacity: 0.4;
+}
+.ad-card-info {
+  padding: 0.75rem;
+}
+.ad-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #ccc;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+  min-height: 2.2em;
+}
+.fb-btn {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #818cf8;
+  background: rgba(129,140,248,0.08);
+  border: 1px solid rgba(129,140,248,0.2);
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.fb-btn:hover {
+  background: rgba(129,140,248,0.18);
+}
+.fb-btn--disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.78rem;
+  color: #2a2a2a;
+  border-top: 1px solid #181818;
+}
+.footer span { color: #4ade80; }
+
+@media (max-width: 640px) {
+  .main { padding: 1rem; }
+  .ads-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .topbar, .stats-bar { padding: 1rem; }
+}
 </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-logo">EcoHub · Relatório de Anúncios</div>
-  <h1>Loja Pathis</h1>
-  <div class="header-meta">Atualizado em 22/03/2026 às 11:51</div>
-</header>
+<div class="topbar">
+  <div>
+    <div class="topbar-brand">EcoHub · Relatório de Anúncios</div>
+    <div class="topbar-title">Loja pathis</div>
+  </div>
+  <div class="topbar-meta">Atualizado em 22/03/2026 às 12:05</div>
+</div>
 
-<div class="stats">
+<div class="stats-bar">
   <div class="stat">
     <div class="stat-value">26</div>
-    <div class="stat-label">Anúncios Ativos</div>
+    <div class="stat-label">Anúncios ativos</div>
   </div>
   <div class="stat">
-    <div class="stat-value">Meta</div>
-    <div class="stat-label">Plataforma</div>
+    <div class="stat-value">7</div>
+    <div class="stat-label">Campanhas</div>
   </div>
   <div class="stat">
     <div class="stat-value">Live</div>
@@ -160,339 +263,315 @@
   </div>
 </div>
 
-<main class="grid">
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/626154347_929943102814974_4907290852568821446_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=erIJ6G3GvJwQ7kNvwEFLHQh&_nc_oc=AdofDfZcDxY1MShnSJ2t4KLJM9wL4edXcd7wirbBgjPjuknFYozdFM7TWIwapVlzvkk7DKNc4rGm8imxku0sT9ma&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQE6ojijLBcIhM70Yz8_746nzsrHjebKPh6AXlE_Za3ZE3jVm_J4oOU955InxJRFYfySdAWnWMVbRw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz1a9pCzYY8v5BqZsS9uFU5GJlCBMUKiAyOzHY4b6Pngg&oe=69C5E551') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">AD03 - Reels grupo vip</h3>
-            <p class="card-body">✨ Tá vendo isso aqui?
-Então, é pra você que faz parte do nosso Grupo VIP 💎
-Toda semana rolam ofertas exclusivas para as ...</p>
+<main class="main">
+<div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-icon">📣</div>
+        <div>
+          <div class="campaign-name">Captação | [LEAD] [QUENTE] [ 4º GRUPO VIP]</div>
+          <div class="campaign-badges">
+            <span class="badge badge--active">ATIVO</span>
+            <span class="badge badge--obj">Leads</span>
+          </div>
         </div>
+      </div>
+      <div class="campaign-count">1 criativos</div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwG6pdft&_nc_oc=AdqWjRh6tdBJbCFnkZiW5AiTneHDw79P78Y4zGR65xtUWtsNed1VAccJMDHWims6UnnW2BwJ5PCGKBSoQvULoWu4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQFhkxl4aSF0ktq8AxKN9W7lj2MzvGOhtWvvsze6u8FHlgXQmR1ulGnEQs3ldaZPYHzh6BZ-a-y6Ew&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx9hr0ZDH7M5HEmmUmp5NbP2Gwr4V7cLic3FnZVB9nZww&oe=69C5B901') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">A calça perfeita existe e eu vou 🫵🏻 mostrar
-No scuba crepe custando apenas $149,99
-
-📍 Rua São José do Ribamar, nº 157
-Ce...</p>
+    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
+    <div class="ads-grid">
+      <div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/626154347_929943102814974_4907290852568821446_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=erIJ6G3GvJwQ7kNvwEFLHQh&_nc_oc=AdofDfZcDxY1MShnSJ2t4KLJM9wL4edXcd7wirbBgjPjuknFYozdFM7TWIwapVlzvkk7DKNc4rGm8imxku0sT9ma&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQEmNx0oliOcoXUlEPjEH8aNz6uX2Bbydp1dwtXqKf3PaV2Jan66vSgBRY9Qy3qD9n01MliBpdYrEA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzNlT_CFPtwi3wNomT0FzAPvbcBHvnrjqD5YwT3s7XHZw&oe=69C5E551') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">AD03 - Reels grupo vip</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+    </div>
+  </div>
+<div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-icon">📣</div>
+        <div>
+          <div class="campaign-name">Venda | [MENSAGEM] [WHATSAPP] [MISTO]</div>
+          <div class="campaign-badges">
+            <span class="badge badge--active">ATIVO</span>
+            <span class="badge badge--obj">Engajamento</span>
+          </div>
         </div>
+      </div>
+      <div class="campaign-count">20 criativos</div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=sJbxqmW1Bc4Q7kNvwGKwnpz&_nc_oc=AdoNWhZi_9OppKn_JN3hCE9UOj7IKphuPKHnV0vHbMDdJijyMbu6LWeZhpLBBp9UJVn7g4tNk72wvkJFgzZY57mC&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQH-H0kxtZDGRiUmKXrsDUCKZLJN1CR9Chrfa_7hG-whqbroFoJlHKphF0WRIo2FSiOcy5dckjMVyw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxlheUnyhD1ogalKKSmU8VYY9vikiYCc330nTOAQOBlXA&oe=69C5DB85') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">📍 Rua São José do Ribamar, nº 157
-Centro do Recife
-
-🗓 segunda a sábado
-🚚 Entregamos onde você estiver
-📲 Chama no WhatsAp...</p>
+    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
+    <div class="ads-grid">
+      <div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwG6pdft&_nc_oc=AdqWjRh6tdBJbCFnkZiW5AiTneHDw79P78Y4zGR65xtUWtsNed1VAccJMDHWims6UnnW2BwJ5PCGKBSoQvULoWu4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHjmM2feKt2v31qZTFFPNWNlqqFEyzxPDaHH9-Zy6vF3lJiso4LzGfMeXGJ4C7DnORk_MEfyuPi2g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyREc7cARnsv7gq3QDO9XY09TfpskgL1TcBWLE8jVZxcA&oe=69C5F141') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=sJbxqmW1Bc4Q7kNvwGKwnpz&_nc_oc=AdoNWhZi_9OppKn_JN3hCE9UOj7IKphuPKHnV0vHbMDdJijyMbu6LWeZhpLBBp9UJVn7g4tNk72wvkJFgzZY57mC&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFNac2yqqH_ZehlFhb-uITt551_s7JW0y1_tA9DLu3FJ2nmx07n0a2695Krs3JN8umCwgI8HCZMxg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwMvFv7QP4ZDinR2ef_FLEqAm3rXSLqree8JCzvJQnM-g&oe=69C5DB85') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=sJbxqmW1Bc4Q7kNvwGKwnpz&_nc_oc=AdoNWhZi_9OppKn_JN3hCE9UOj7IKphuPKHnV0vHbMDdJijyMbu6LWeZhpLBBp9UJVn7g4tNk72wvkJFgzZY57mC&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQG-JEsKvNZrhutWsIXF5CtBN8PPAeWc5Iyw_v6UjQsvemZrVoNm96wpvMoGCU5v8ct55HsPlSxr5Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx_-fNThp_KM4tP-Gkr9TMacXion2mpRjqiQwuYAp_E8Q&oe=69C5DB85') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwG6pdft&_nc_oc=AdqWjRh6tdBJbCFnkZiW5AiTneHDw79P78Y4zGR65xtUWtsNed1VAccJMDHWims6UnnW2BwJ5PCGKBSoQvULoWu4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQF_5jQ1rFOUnXT_1B9ofj4tYwaWrZ7o8duPYe-eKUdjyZrxfjQLt-h8r6hkZC7H5GknVvIt5V1LBg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz630X4QFLcyBLxtLWSR45TTBJOMrX9Cj4xDxMZylHe6g&oe=69C5F141') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwEaSlb3&_nc_oc=AdrGD11753cZgGd4Q04gVFAP2g-Qo4rO3btIq9P9HWGfpEGmBjy9b8F9MD5JVWLEc_83flgSFpFR4vt12tFkdgPs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHJ2fP1z8u0q4wXZVRjMdqya1blYHYDGZXe8CYQrDPYjEV3SAWHngOw8QQN8ZuKr-3zNDmQKWA7zw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzNI4_WJ3ja7LGbdwBUdWK3a3ouPrWNWQ9nHnc_Ao2HcA&oe=69C5E24F') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHD4oAS&_nc_oc=AdrSMX7iPz2ctUbzrxddE2nuQpGA0sejlsHaDbgO1Y1uSflj14BUi11Wuvw44q96nau4-PLiv4zb1obOnfZKuPL5&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQF9kD0QsYrEltWtYACI25Xd-XmAxxUXKMSJ-dzsScyteOP2Z7okpVjFOUqpSjm7aS0UjeQGMm5CCg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyaKo9apL0ukTb0mTGmuq8rw6NfkdGIIFGfj9_LoAGe5Q&oe=69C5D921') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwFOgRwI&_nc_oc=Adp_X3s_flomvc8PBoLWtpPUj2kZZudDmruylQtZdEhO84LlFhVec9DNJyxjvaelZF0eFljJDVx-C8LPfjF1iE0W&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHaktbNMKgt0xTH8YP_mmOY_JF06xkiRgqnDatXIB9BKW15OG7B0gQbtLTZWuY5OBTdHrdWdDw70w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzcSmZ-_fEA_h9rtMjhwHIwz-i6PcIacfpC4bzmWjq4Gw&oe=69C5C486') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHD4oAS&_nc_oc=AdrSMX7iPz2ctUbzrxddE2nuQpGA0sejlsHaDbgO1Y1uSflj14BUi11Wuvw44q96nau4-PLiv4zb1obOnfZKuPL5&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHwydcrMf6xLSqD6dzqENUcMBQ2P6oqfpP0XAk6LDfdVk9L4uKknQ-2G7F3gk7pHL-BxzsxxGhE9Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx8nousR_BCeqNsFUBJS-RDrxLtz7b-PoDc-Wb5p2ZsgA&oe=69C5D921') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwFOgRwI&_nc_oc=Adp_X3s_flomvc8PBoLWtpPUj2kZZudDmruylQtZdEhO84LlFhVec9DNJyxjvaelZF0eFljJDVx-C8LPfjF1iE0W&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHaFIEqFrblOdRphvZsjmc02hksGUCRtyZPiz-1pAS90o2QncEgHizvYm9_pDN50e6LyIuJIQdXmQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxhTjQkV8kyYBBDxLyVl866PFEAodyAal0o_2B0tilR0w&oe=69C5C486') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwEaSlb3&_nc_oc=AdrGD11753cZgGd4Q04gVFAP2g-Qo4rO3btIq9P9HWGfpEGmBjy9b8F9MD5JVWLEc_83flgSFpFR4vt12tFkdgPs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFVZGHCefu1l3DjVIMQYUZ3U0SVjDXip52ClgR7oZXonYCiV21JANhg_f8ULhE5qzDdDLkrczWmoA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwEHQ1gG7kFOJTZHJmYH8duWdwUU9QGOfIyyO-8Sa9Gxg&oe=69C5E24F') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=cGDNO3DrIigQ7kNvwHeDJyR&_nc_oc=AdpEvVVsWNqpUynZp5LAD-sCxIJDvLCqsG2HfazIpa0LCS81eYhVr6gFOZ1RWFcVjKw6xZlJJ5Os-7E2CRY-Uj_s&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFuzcvibOCaV_kT49s9jgAAKVuCrjAIUny6xLy8Z0PrUlFKC0cFxpLIR9f0B4L3wG4Dwy1fK5Q0ig&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxN03FLok_3Trggwec7aMKYYW86aLqdIP1b9Tf7xfML2A&oe=69C5ED15') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwHP7Opu&_nc_oc=Ado9kM0eNh3_ui7ZJ9n-NXTwf5yzfLppMcJ6v14fgj1asprDRGg9N7EsxrAwP4HRlg0yJC2Q-_2VCmoFEFudPkk4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQEa4TmF42v2bDhctF6CrfCjywuiQwIkEXO5eQZlNnZKFlk4COr6k0NM3hypuZ64iyESR_c0uStL2Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwWwBHhjC0SvoOfxiTqTG_uEaygdr1PmuC0L5j7v0vGNg&oe=69C5CCEE') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=cGDNO3DrIigQ7kNvwHeDJyR&_nc_oc=AdpEvVVsWNqpUynZp5LAD-sCxIJDvLCqsG2HfazIpa0LCS81eYhVr6gFOZ1RWFcVjKw6xZlJJ5Os-7E2CRY-Uj_s&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQEfXPN6Z6J6oJKlcdnDHLGpxDjPJ-mlJ9m2k1Qfq_tJ8bzkDdr5V7W0TrNFk6GyAW4GTm-q77md4Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfydYna4UUl5Lz0h-WthRlok9qfQx9YAt0VJA0n7v7RXPw&oe=69C5ED15') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwHP7Opu&_nc_oc=Ado9kM0eNh3_ui7ZJ9n-NXTwf5yzfLppMcJ6v14fgj1asprDRGg9N7EsxrAwP4HRlg0yJC2Q-_2VCmoFEFudPkk4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQF8U_F7cmeArMZAo9R_jOkJxEovyGMVNzT4O-VoOhuRF3AE4qQ6VxBpbgEZvbjMee3pEt3wciNVRA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxyVN6o4PLfG3MnwowOFHvpVCJp-CogvA4_hCEKGtqmTA&oe=69C5CCEE') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwELLjBW&_nc_oc=AdqDjnGrzgSV56H2RsVS42fqi_Le61Otn1DJSf1aVyuh1t3l6x2JsS1cNszj63xhyeXJfIHR2YdqvGEdpFlUFnH0&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHBCB_kEGLrqivxuef1FgrPfomih--b-eC1O1cJ0jlplY9ywGtXQsQNGBjatRe_WukXFgZzhzSQEA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxo9jTWdO_GGRKF3X8eetSVZzVpU8TDWFzwyR1OJmgKNw&oe=69C5BE48') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwELLjBW&_nc_oc=AdqDjnGrzgSV56H2RsVS42fqi_Le61Otn1DJSf1aVyuh1t3l6x2JsS1cNszj63xhyeXJfIHR2YdqvGEdpFlUFnH0&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQEmFnBd5_avaK_wDGmaSPPrctGO14GGmLl5RSWCkDvGBrzxwef0v05GcP_9mU27Tgtd5zGXlpbReA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afw-08wxBMELNnUHY533VXjlUzLYedem42FmI1j4NMD4fg&oe=69C5BE48') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFCB8Zc&_nc_oc=AdpVyutlMYQG0ksnsfK2vK_h9w1qsC2WBtak48_gc5fQuQpktFZVKGfqnRUWxViyXORdTsrs8iW5if-9CCtH_Frs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFu757uAKCa9inD3vIGlXXdUowQciSM1PcAhwdP_Hh42zsHKriE2E7VqcswQgcT7TJbP3gBpXtB3g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxl1SsDvlGLW-xkoxaZKvCNrqnOB9nTNi9bUk0cBs9SgQ&oe=69C5EFDE') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFCB8Zc&_nc_oc=AdpVyutlMYQG0ksnsfK2vK_h9w1qsC2WBtak48_gc5fQuQpktFZVKGfqnRUWxViyXORdTsrs8iW5if-9CCtH_Frs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQF5mqq68sc4C1j_TrU3r5NGcQ_rWD9gkFUgilprQkc2JeCvVzuEm0RzpZUqUstL4JBF0Rf5ruiFBA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyZafLIDYocJ56gOGJaPPutNCWu7FqAv94d3VSi9vvt6g&oe=69C5EFDE') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Converse conosco</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.13418-10/566566632_716581460696588_3649711858675149011_n.jpg?_nc_cat=104&ccb=1-7&_nc_ohc=sbCUVrtDycsQ7kNvwENz0fM&_nc_oc=AdqEqpFJnBKyX8qfbwE6SaPBxP4zV-ZBLnMj6jUVuJXCs8KKfUu0s2melut6D2yDHQbLBeR-ph8wqi1wBQXu0-Gh&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQGhcEaPM6TrTz6cwwBdcoZmIn2e6u__9YP-3V9xHkAOs6kGyn1HlqwHjdmpEMwwnJMzFQmuqLONwQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyHSbfoLGgRFfRLO96opQBRkB6gl18Pesmj8iFufrM5mQ&oe=69C5CAF7') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">AD14 - Reels blusa em crepe</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+<div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/561618054_1169833555010573_1429729776748049899_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=VI2lFV8cM6wQ7kNvwHRD44j&_nc_oc=AdqSHPjy34HuQbXmBpoOZ2H25EdXFhJ0xCykD4GrypbCBiOW3dpt1G3BE9LHBgC12pOobz0pd-vaRG0mGuEsr_Mv&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQH3L1ZKSSy6rYRAI6Jlv4-LBnAY3Qr2D0W8zAonyyHFFwaeaXoZHRJaK1ZKIm8XbFkEx3l-QbgeeQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afy3RtjPlVDewMA7rmh9HEocK4f8UR744gBxmZBaN20tig&oe=69C5F342') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">AD13 - Reels macacão patricia</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+    </div>
+  </div>
+<div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-icon">📣</div>
+        <div>
+          <div class="campaign-name">Relacionamento | [VIDEOVIEW] [FRIO] [LOCALIZAÇÃO]</div>
+          <div class="campaign-badges">
+            <span class="badge badge--active">ATIVO</span>
+            <span class="badge badge--obj">Engajamento</span>
+          </div>
         </div>
+      </div>
+      <div class="campaign-count">1 criativos</div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=sJbxqmW1Bc4Q7kNvwGKwnpz&_nc_oc=AdoNWhZi_9OppKn_JN3hCE9UOj7IKphuPKHnV0vHbMDdJijyMbu6LWeZhpLBBp9UJVn7g4tNk72wvkJFgzZY57mC&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQGKcuPaw4TY1cF9CMNkTQY9dGr3i7TMGIBe6FTJ3nC_m2CP0eeZ6FZ4ju9pAV0NoveaGc83uD9SNg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxMHwlqYv5dW1JHC3TpbM30Ry77ROGo11P4ZsXVekqBew&oe=69C5DB85') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">📍 Rua São José do Ribamar, nº 157
-Centro do Recife
-
-🗓 segunda a sábado
-🚚 Entregamos onde você estiver
-📲 Chama no WhatsAp...</p>
+    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
+    <div class="ads-grid">
+      <div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637882998_2007366930160828_319968532192488573_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=sgEc7s34VgQQ7kNvwGncRh2&_nc_oc=AdohPy9QyPnUKd65tSj0LkNUNbY6A_51gkl6H-OtEB3doadzxHx5Q525UPJg9jMwhDOOaegxBWEkHnXgzDXmH958&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQG30nxXktiyV3w9zePc1CB8hW8u3ejwrRT6xzzR5R0ZDsoUYzq3Hv8GvnVoy2JG3lpN39rpNKz0rA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyB13AwAXOEfCh5E0RrEYGEFdq4SdzHiHx_bccf0uqmxw&oe=69C5D78F') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">AD07 - Reels localização</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+    </div>
+  </div>
+<div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-icon">📣</div>
+        <div>
+          <div class="campaign-name">Post do Instagram: Medidas reais. Corpo real....</div>
+          <div class="campaign-badges">
+            <span class="badge badge--active">ATIVO</span>
+            <span class="badge badge--obj">Cliques</span>
+          </div>
         </div>
+      </div>
+      <div class="campaign-count">1 criativos</div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwG6pdft&_nc_oc=AdqWjRh6tdBJbCFnkZiW5AiTneHDw79P78Y4zGR65xtUWtsNed1VAccJMDHWims6UnnW2BwJ5PCGKBSoQvULoWu4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQEiHniV565RqLHJJcyoKkjH438t9MlsdT9OFLj2Z4YiGjNKPfH6TAcyDTt6QtwYf58wOT-a2ECBkA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzHjS8CBtcOOVh031UzK7Z6PRzjnCawYhmSyRN5wycUig&oe=69C5B901') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">A calça perfeita existe e eu vou 🫵🏻 mostrar
-No scuba crepe custando apenas $149,99
-
-📍 Rua São José do Ribamar, nº 157
-Ce...</p>
+    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
+    <div class="ads-grid">
+      <div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/596018549_1857536081821570_8205758525858578859_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=dCkU_259WoEQ7kNvwGxDgNP&_nc_oc=Adq2TIOFCO0OXJMRpLY0fJZ88TFhBkCF15Vrgp7jqdNjOwJFzehK-FOZ0chtW8Lz-wspZ5a4K7okSHo2R0wSExed&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFvUONDXL0bw4mCdLLWPyQXcyEEVtUOLFQnUJrTAFQIZQSDZ0rWOTX8omf6mDxukCn74ugVj7nTzg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afz_KjO0pUWm5A7Yzsu6x_8HUwkVPVGZRxCX_o5rkBREAg&oe=69C5C3FF') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Post do Instagram: Medidas reais. Corpo real....</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+    </div>
+  </div>
+<div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-icon">📣</div>
+        <div>
+          <div class="campaign-name">Post do Instagram: ✨ conjunto em malha crepe por...</div>
+          <div class="campaign-badges">
+            <span class="badge badge--active">ATIVO</span>
+            <span class="badge badge--obj">Cliques</span>
+          </div>
         </div>
+      </div>
+      <div class="campaign-count">1 criativos</div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwEaSlb3&_nc_oc=AdrGD11753cZgGd4Q04gVFAP2g-Qo4rO3btIq9P9HWGfpEGmBjy9b8F9MD5JVWLEc_83flgSFpFR4vt12tFkdgPs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQFv3T5WiRHwPr-oPfpnejCMV1urADfJ8l6xQj5YNBqYQrGBfkVLi7H0GKZAMuH0sus0ruE2FUQdDA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxXDY3FnWZ4_L0yza14tl3u5Vl5eR5dcHUA9h7M92Epvw&oe=69C5E24F') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">**Calca jeans 👖 feminina
-Com laycra **
-TAM 46 ao 54
-❌ 1 calça por $89,99
-❌ 2 calças por $149,99
-
-💰formas de pagamento: p...</p>
+    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
+    <div class="ads-grid">
+      <div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/568721245_2278444489243145_5377558617145848829_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EHTLsxkfkc8Q7kNvwFK4jk5&_nc_oc=AdpAvpfWU3SWDrMhVu0ZZVDF2Jrk2bHBYH-Qamz-wQuc0nmY-Il1-kx1M4o0bp1JcJaxOvQFzH4B9j4zTIs_1HRV&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHkdKmz4m_F8zz1GB045qPgIsD9rYnca5FPLT6eE_onAAP1O8yNjBdTa0P0D_eDsJ-sTo1_qGcfKA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afyq3_JCKb_O3txQsio1Bf4Grnmcd2VenE2ykY2jJ0pXLA&oe=69C5E6AF') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Post do Instagram: ✨ conjunto em malha crepe por.....</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+    </div>
+  </div>
+<div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-icon">📣</div>
+        <div>
+          <div class="campaign-name">Post do Instagram: “Quem melhor pra falar da...</div>
+          <div class="campaign-badges">
+            <span class="badge badge--active">ATIVO</span>
+            <span class="badge badge--obj">Cliques</span>
+          </div>
         </div>
+      </div>
+      <div class="campaign-count">1 criativos</div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHD4oAS&_nc_oc=AdrSMX7iPz2ctUbzrxddE2nuQpGA0sejlsHaDbgO1Y1uSflj14BUi11Wuvw44q96nau4-PLiv4zb1obOnfZKuPL5&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQETueWX6T5dugr9Nj_JzgGDXUpvP1fXh6oqtNIeyPlKBRq0ncxeLoeEQ6htCDp8FC4DNtfKzr-kPg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxuW4KbSUBWwX9rj5cfmj4vcBnPijBGiBYHXcFl08bi3g&oe=69C5D921') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Vestido amanda em crepe duna
-Veste do 44 ao 54 por $39,99
-
-📍 Rua São José do Ribamar, nº 157
-Centro do Recife
-
-🗓 segunda...</p>
+    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
+    <div class="ads-grid">
+      <div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/563383688_683493447674015_677251340666898760_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EdZKjhIRaR8Q7kNvwGU0PJy&_nc_oc=AdpMHNL0V7Z-uqprpeoLZXEcTtnFDx9PP-SNej7aCgwHr5rWSiTnGmCV7o6NJL_DLI7ijFhX_ce_xAcpt9-7hW1D&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHQT5qPmHnhrzLlYFUFZvgjGOU__MeFha4XQAPcLkrfCnx0f498VMtfzkGew2e5MpmaZrr3Atq3yw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afyty_B-MJs-fnOicWAyOkzhjamaJxjPkLvXLg2Xk0QE8g&oe=69C5DE78') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Post do Instagram: “Quem melhor pra falar da...</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
+    </div>
+    </div>
+  </div>
+<div class="campaign-block">
+    <div class="campaign-header">
+      <div class="campaign-header-left">
+        <div class="campaign-icon">📣</div>
+        <div>
+          <div class="campaign-name">Post do Instagram: O #sambarecife está chegando...</div>
+          <div class="campaign-badges">
+            <span class="badge badge--active">ATIVO</span>
+            <span class="badge badge--obj">Cliques</span>
+          </div>
         </div>
+      </div>
+      <div class="campaign-count">1 criativos</div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwFOgRwI&_nc_oc=Adp_X3s_flomvc8PBoLWtpPUj2kZZudDmruylQtZdEhO84LlFhVec9DNJyxjvaelZF0eFljJDVx-C8LPfjF1iE0W&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQEf5mlwN3t3Kjk_-j0QcJCfxk8ohCwVeOLsp_ihvf9a0ZU1YqkDRKxjHxMVHGqyNXvYtBzwBZqPuA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxe_tg-ZGmFvXNWE4Wh_bKPgkLkp551ItgJnL6XqRYl_g&oe=69C5C486') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Aqui você mulher Plussize também acompanha a moda🇧🇷❤️</p>
-        </div>
+    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
+    <div class="ads-grid">
+      <div class="ad-card">
+      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/553489208_765682722900608_3536675434902768250_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=R4qMrh-2628Q7kNvwEHBPGi&_nc_oc=AdqyizNTMyCydH1HfR5Ob-8ASdQq_vjJ-rIIyJaxSosKjE1u33ImPTbblcr78BISbcH8bs93nh6Nja5sfytZb_SL&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQGmd8b-xFoY4ZlYzzfcP0HLYys4aAeOk4a2uCgXZG63NRKgBIadNQXTD6fgCQcvbNzFMHhwZlG_Bg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afw1FcBVg8_kVUHZqApoNoFI03ggitpbfJiEBzNz3tK84Q&oe=69C5F3A7') center/cover no-repeat;"></div>
+      <div class="ad-card-info">
+        <p class="ad-name">Post do Instagram: O #sambarecife está chegando...</p>
+        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
+      </div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHD4oAS&_nc_oc=AdrSMX7iPz2ctUbzrxddE2nuQpGA0sejlsHaDbgO1Y1uSflj14BUi11Wuvw44q96nau4-PLiv4zb1obOnfZKuPL5&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQGfMmdXOUkdhZBxkwloQL2KqslesM7QYGC1PAr6bNKbU1KNqYM_vRf0EKW21f9W5R-xcfRxva2t7A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxh1OTcOntp-_YlbV-z15q96-7NYRYKj0AzKPRU62Rwvg&oe=69C5D921') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Vestido amanda em crepe duna
-Veste do 44 ao 54 por $39,99
-
-📍 Rua São José do Ribamar, nº 157
-Centro do Recife
-
-🗓 segunda...</p>
-        </div>
     </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwFOgRwI&_nc_oc=Adp_X3s_flomvc8PBoLWtpPUj2kZZudDmruylQtZdEhO84LlFhVec9DNJyxjvaelZF0eFljJDVx-C8LPfjF1iE0W&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQEqMAEmAZKRmG_CxDEr2XyFijW7GwX--lwhc8cJxM1164ZtTaYJ8QPUP6sh3qQCJ4dOVgIKFotJGw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfysZCOQixgLdBwFRRfQ15mAeJ1_nGricwEzKDxgYJUxyw&oe=69C5C486') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Aqui você mulher Plussize também acompanha a moda🇧🇷❤️</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwEaSlb3&_nc_oc=AdrGD11753cZgGd4Q04gVFAP2g-Qo4rO3btIq9P9HWGfpEGmBjy9b8F9MD5JVWLEc_83flgSFpFR4vt12tFkdgPs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQF5-EebTCRY674Mcyq9Ln39tt5xnfX3kQRqH9aoUc9-IXHIP9fblybJ0CuUkset3z1hemFRUGyhAg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxSTuEV1Lsv4GTzjmhvdrp8WsZ42hWh1viIQWh8X7aBUA&oe=69C5E24F') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">**Calca jeans 👖 feminina
-Com laycra **
-TAM 46 ao 54
-❌ 1 calça por $89,99
-❌ 2 calças por $149,99
-
-💰formas de pagamento: p...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=cGDNO3DrIigQ7kNvwHeDJyR&_nc_oc=AdpEvVVsWNqpUynZp5LAD-sCxIJDvLCqsG2HfazIpa0LCS81eYhVr6gFOZ1RWFcVjKw6xZlJJ5Os-7E2CRY-Uj_s&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQEnfKjE6iyM1hvJIyk6c_K5yIxwSDDOQegIBkeHV1GOvAaayCFNf7wJmv_18Nmm7UTo65R7fiii7Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyK4ZnloTcM9rMt8aaCC1ihMgep4sU2O92H20geslIQ0A&oe=69C5ED15') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">𝙃𝙤𝙟𝙚 𝙖𝙥𝙚𝙣𝙖𝙨 𝙝𝙤𝙟𝙚 2 𝙘𝙖𝙡𝙘̧𝙖 𝙡𝙞𝙥𝙤 𝙥𝙤𝙧 $139,99</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwHP7Opu&_nc_oc=Ado9kM0eNh3_ui7ZJ9n-NXTwf5yzfLppMcJ6v14fgj1asprDRGg9N7EsxrAwP4HRlg0yJC2Q-_2VCmoFEFudPkk4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQGP5GYfu4GGTQ97qWCx0xXdaFJmO_kUZTribUnSkb11k6VKR-kzEoa920pZRd2UPmkghS3In3Lm1g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz70CBgkpjJoC0GdQrrCoawz_mIgPQSCyW1Ht7u1BB2uA&oe=69C5CCEE') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Biquine e maiô Plussize do 46 ao 52
-1 por $47,99
-2 por $89,99
-
-📍 Rua São José do Ribamar, nº 157
-Centro do Recife
-
-🗓 seg...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=cGDNO3DrIigQ7kNvwHeDJyR&_nc_oc=AdpEvVVsWNqpUynZp5LAD-sCxIJDvLCqsG2HfazIpa0LCS81eYhVr6gFOZ1RWFcVjKw6xZlJJ5Os-7E2CRY-Uj_s&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQGVUoau2sqQeeq2B-dqX4gYwpVo3C61haLez0CpnCKzxb1ckn33yqBtQGz2kEdCBBliR9iGV_3AcQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx-RP3PH4PNAU_oN709zmaCAOI0YU9CrGhmSoHmHy1U6Q&oe=69C5ED15') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">𝙃𝙤𝙟𝙚 𝙖𝙥𝙚𝙣𝙖𝙨 𝙝𝙤𝙟𝙚 2 𝙘𝙖𝙡𝙘̧𝙖 𝙡𝙞𝙥𝙤 𝙥𝙤𝙧 $139,99</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwHP7Opu&_nc_oc=Ado9kM0eNh3_ui7ZJ9n-NXTwf5yzfLppMcJ6v14fgj1asprDRGg9N7EsxrAwP4HRlg0yJC2Q-_2VCmoFEFudPkk4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQFGNVCWWM5LffiJB7QswgqV2PnGq2TjEm920A4dFkpBG656Zav4MC2ZjLhIAc-16eUrtVJEQsoMOQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzZUBXA2R6EVTh1otTmtEmGMSotxeQWwPhaHh3txDKhbg&oe=69C5CCEE') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Biquine e maiô Plussize do 46 ao 52
-1 por $47,99
-2 por $89,99
-
-📍 Rua São José do Ribamar, nº 157
-Centro do Recife
-
-🗓 seg...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwELLjBW&_nc_oc=AdqDjnGrzgSV56H2RsVS42fqi_Le61Otn1DJSf1aVyuh1t3l6x2JsS1cNszj63xhyeXJfIHR2YdqvGEdpFlUFnH0&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQEcOVyh-cIhm1zSymZS42oy48QjldcHzbTA04esX6D6j7fKqrcWBWP2AP3XvMN1_BY0rHmhhegYtw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyUhWMGg83rkIMcWrl-0Nv5S1tTQsp99sfldSVA9EIdqg&oe=69C5BE48') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Aero look Plussize na PATHIS por $59,99
-
-📍 Rua São José do Ribamar, nº 157
-Centro do Recife
-
-🗓 segunda a sábado
-🚚 Entreg...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwELLjBW&_nc_oc=AdqDjnGrzgSV56H2RsVS42fqi_Le61Otn1DJSf1aVyuh1t3l6x2JsS1cNszj63xhyeXJfIHR2YdqvGEdpFlUFnH0&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQGXds38DK5k64CtxlBn7iNZ_AnSXfZyl7w-EYJOpzlwCXHy5yLJBxZY10mrWqY8TPdVLTxhQIIOBg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz262sQd1hJKGc1hMCh0tmsChFOyPFPnUvvwSOgDhyA0A&oe=69C5BE48') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Aero look Plussize na PATHIS por $59,99
-
-📍 Rua São José do Ribamar, nº 157
-Centro do Recife
-
-🗓 segunda a sábado
-🚚 Entreg...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFCB8Zc&_nc_oc=AdpVyutlMYQG0ksnsfK2vK_h9w1qsC2WBtak48_gc5fQuQpktFZVKGfqnRUWxViyXORdTsrs8iW5if-9CCtH_Frs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQHmxkkbqCZI-4gEDt9-HkSAeiINS0IoaNaTRLIlPmyuo7Y27PFH8ZkixOUNeeNgT5NsjDZKBzZ0-Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwnGenTgeUgBdi0GubjfW6kZS7tKdJBTczbuEhn-RcbaA&oe=69C5EFDE') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Calca jeans 👖 feminina
-Com laycra **
-TAM 46 ao 54
-❌ 1 calça por $89,99
-❌ 2 calças por $149,99
-
-💰formas de pagamento: pix...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFCB8Zc&_nc_oc=AdpVyutlMYQG0ksnsfK2vK_h9w1qsC2WBtak48_gc5fQuQpktFZVKGfqnRUWxViyXORdTsrs8iW5if-9CCtH_Frs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQGeMOyNUV6BBivYxVu5WRH5cSj7TOZBuuJPc7N2iFjwcTmpccxraIrzUCy3bRNYDPjBHGuxYL2VpA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzuN668bfuIF5ViBf56eFzev8nFZ_divNZ9D_wijX22IQ&oe=69C5EFDE') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Converse conosco</h3>
-            <p class="card-body">Calca jeans 👖 feminina
-Com laycra **
-TAM 46 ao 54
-❌ 1 calça por $89,99
-❌ 2 calças por $149,99
-
-💰formas de pagamento: pix...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637882998_2007366930160828_319968532192488573_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=sgEc7s34VgQQ7kNvwGncRh2&_nc_oc=AdohPy9QyPnUKd65tSj0LkNUNbY6A_51gkl6H-OtEB3doadzxHx5Q525UPJg9jMwhDOOaegxBWEkHnXgzDXmH958&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQGfHYWzhmh_6_KeiHeem3bN5A-GJzZHcO6b2sMsS9N2RYIfkh47gFIYbxHtc-uYEpExGL8pdOl_Jg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afx5t9s2xHT-8VUxdn6yayw_hmn77HfOlmtMYf2o_Dg8bA&oe=69C5D78F') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">AD07 - Reels localização</h3>
-            <p class="card-body">Aqui na FONTE da Moda plussize, você mulher real encontra looks do 42 ao 56. Me conta já sabe aonde fica a Loja Pathis ⁉...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.13418-10/566566632_716581460696588_3649711858675149011_n.jpg?_nc_cat=104&ccb=1-7&_nc_ohc=sbCUVrtDycsQ7kNvwENz0fM&_nc_oc=AdqEqpFJnBKyX8qfbwE6SaPBxP4zV-ZBLnMj6jUVuJXCs8KKfUu0s2melut6D2yDHQbLBeR-ph8wqi1wBQXu0-Gh&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQEa0JDet9yQGMbYtJJ9RpF6kqeRu7xDmaM4Y1i5xdzD_6Sh6re-ASdBl75lmPXOaGqBZ8udwrhE7g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_Afy-UPVW0Uld5-mFymOt5gYo0psGDy14peaH6NeyEmHl7w&oe=69C5CAF7') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">AD14 - Reels blusa em crepe</h3>
-            <p class="card-body">✨ Uma peça, mil possibilidades!
-A blusa em crepe duna de alça chegou para compor seus looks de todos os jeitos. 💕
-
-📍Rua ...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/561618054_1169833555010573_1429729776748049899_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=VI2lFV8cM6wQ7kNvwHRD44j&_nc_oc=AdqSHPjy34HuQbXmBpoOZ2H25EdXFhJ0xCykD4GrypbCBiOW3dpt1G3BE9LHBgC12pOobz0pd-vaRG0mGuEsr_Mv&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQFbEvwR6PkPXlcpl16TztUhSPgFN0kPHijDEqiUjwZkcBq3jdaEu7WIM8QcnjhVdvdeCE07UTKumQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxyjP00B6rt3JeHng_zdFIgPNKhESibsqsviR9bTEVM8A&oe=69C5BB02') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">AD13 - Reels macacão patricia</h3>
-            <p class="card-body">✨ macacão Patrícia chegou com uma explosão de tendência para o corpo plussize 💕
-
-📍Rua São José do Ribamar n 157, bairro ...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/596018549_1857536081821570_8205758525858578859_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=OADRqaOCUEkQ7kNvwEMdfYR&_nc_oc=AdpeF45mGI3H-18WSwmVdwm0KaiTPP_8HitSMcuVSZnxVbhU-OKqPEN8oVtjPp2zWkAYcWQNYsmcOEJ6y8gxmYNL&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQFb33vy2O5zMwSWUyo15Hz-7YOjviMcN7-3sYiTJeXBKhfxV_OPmeY1P1HLRRsrtNGCwdht9Ku26w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyXKi7jn0gvyrCFbWvBqSleGQ5_GFx03xkenQkQBGudTw&oe=69C5C3FF') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Post do Instagram: Medidas reais. Corpo real....</h3>
-            <p class="card-body">Medidas reais. Corpo real. Beleza real.
-Nossa Musa 58 prova: a moda é feita pra você! 🧡🔥
-
-#tamanhoplussize #lojaplussize</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/568721245_2278444489243145_5377558617145848829_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EHTLsxkfkc8Q7kNvwFK4jk5&_nc_oc=AdpAvpfWU3SWDrMhVu0ZZVDF2Jrk2bHBYH-Qamz-wQuc0nmY-Il1-kx1M4o0bp1JcJaxOvQFzH4B9j4zTIs_1HRV&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQGfdlq-jVhS7N4en6gKJIX-Qq5njDt80qi8rp01VLFkrNJe5K8khfZi2Ukx3iWlNq6huZWXOH-0iA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afz9x27uvZWBk9IwOm6OFuXoMFL5GhsH8-VfN2-ebi2Z5A&oe=69C5E6AF') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Post do Instagram: ✨ conjunto em malha crepe por...</h3>
-            <p class="card-body">✨ conjunto em malha crepe por R$49.99
-Veste do 44 ao 52 💕
-
-📍Rua São José do Ribamar n 157, bairro de São José/ Centro do...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/563383688_683493447674015_677251340666898760_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EdZKjhIRaR8Q7kNvwGU0PJy&_nc_oc=AdpMHNL0V7Z-uqprpeoLZXEcTtnFDx9PP-SNej7aCgwHr5rWSiTnGmCV7o6NJL_DLI7ijFhX_ce_xAcpt9-7hW1D&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQFOwAlpU3FOUmZw4FOFNMA7tzJSVignWopMG-QxFPjdrQNAbrkFQ78jAw8huAyn2TZjfyQ5H-XJgQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxO1r0Dag-cSTAHW7AbOTL5TFzPW4EctsS5ZlAq7oraVw&oe=69C5DE78') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Post do Instagram: “Quem melhor pra falar da...</h3>
-            <p class="card-body">“Quem melhor pra falar da Pathis do que quem veste de verdade? 💖
-Assiste o que nossa musa contou — é de arrepiar!”
-
-“Que...</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/553489208_765682722900608_3536675434902768250_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=R4qMrh-2628Q7kNvwEHBPGi&_nc_oc=AdqyizNTMyCydH1HfR5Ob-8ASdQq_vjJ-rIIyJaxSosKjE1u33ImPTbblcr78BISbcH8bs93nh6Nja5sfytZb_SL&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=TRdJM6IHXbMDpWDVnnPlmg&_nc_tpa=Q5bMBQFVPcaIDWmFt91NDF0f0X9nD8ystjCmEi_T_Xj4Wqndb8jdaT4g16L580Hw61XvkLxQ0gX6lUG7Kg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afzok0qFKlTK5RRLD5x9XAdmTyHpId7iPuPHkm02et8qfg&oe=69C5BB67') center/cover no-repeat;"></div>
-        <div class="card-info">
-            <span class="badge">✅ ACTIVE</span>
-            <h3 class="card-title">Post do Instagram: O #sambarecife está chegando...</h3>
-            <p class="card-body">O #sambarecife está chegando mulherão! 🥳🍺
-
-#plussize #lojasderoupasfemininas #viral #modafeminina #lookdodia #lojaplussi...</p>
-        </div>
-    </div>
+  </div>
 </main>
 
 <footer class="footer">
