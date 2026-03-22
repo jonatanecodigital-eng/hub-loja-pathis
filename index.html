@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUB de Anúncios — Loja Pathis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    border-bottom: 1px solid #222;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+  }
+  .header-logo {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #00e5a0;
+    margin-bottom: 0.75rem;
+  }
+  .header h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .header-meta {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  /* STATS BAR */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    background: #111;
+    border-bottom: 1px solid #1e1e1e;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00e5a0;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+  }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* CARD */
+  .card {
+    background: #141414;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #00e5a0;
+  }
+  .card-img {
+    width: 100%;
+    height: 180px;
+  }
+  .card-info {
+    padding: 1rem;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #00e5a0;
+    background: rgba(0,229,160,0.1);
+    border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 20px;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+  .card-body {
+    font-size: 0.82rem;
+    color: #777;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    color: #333;
+    font-size: 0.8rem;
+    border-top: 1px solid #1a1a1a;
+    margin-top: 2rem;
+  }
+  .footer span { color: #00e5a0; }
+
+  @media (max-width: 600px) {
+    .grid { padding: 1rem; gap: 1rem; }
+    .stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-logo">EcoHub · Relatório de Anúncios</div>
+  <h1>Loja Pathis</h1>
+  <div class="header-meta">Atualizado em 22/03/2026 às 11:48</div>
+</header>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value">26</div>
+    <div class="stat-label">Anúncios Ativos</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">Meta</div>
+    <div class="stat-label">Plataforma</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">Live</div>
+    <div class="stat-label">Status</div>
+  </div>
+</div>
+
+<main class="grid">
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/626154347_929943102814974_4907290852568821446_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=erIJ6G3GvJwQ7kNvwEFLHQh&_nc_oc=AdofDfZcDxY1MShnSJ2t4KLJM9wL4edXcd7wirbBgjPjuknFYozdFM7TWIwapVlzvkk7DKNc4rGm8imxku0sT9ma&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQHv_iGFTtJbj79os65JvWtzkl0VtZTagLH7E2exRLTcESSgOiAKLRQrulr8nvno6yDKlc3fVA2uDg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyolqE4e8nQpmM2zo1J-L_h63uM4kEcs6Q0qrPy1vMATQ&oe=69C5E551') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">AD03 - Reels grupo vip</h3>
+            <p class="card-body">✨ Tá vendo isso aqui?
+Então, é pra você que faz parte do nosso Grupo VIP 💎
+Toda semana rolam ofertas exclusivas para as ...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwG6pdft&_nc_oc=AdqWjRh6tdBJbCFnkZiW5AiTneHDw79P78Y4zGR65xtUWtsNed1VAccJMDHWims6UnnW2BwJ5PCGKBSoQvULoWu4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQFrnQzEbV1lEMCBZ7YU4JdXlcecv0VsXJbdQTP597HNX4oTj8WSzCRGvMVXhLx127g4fir3iPHrKg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzXMwl0JdadrPQJpGDipUrk5WAByXcm6QlydOgNKEr-OA&oe=69C5B901') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">A calça perfeita existe e eu vou 🫵🏻 mostrar
+No scuba crepe custando apenas $149,99
+
+📍 Rua São José do Ribamar, nº 157
+Ce...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=sJbxqmW1Bc4Q7kNvwGKwnpz&_nc_oc=AdoNWhZi_9OppKn_JN3hCE9UOj7IKphuPKHnV0vHbMDdJijyMbu6LWeZhpLBBp9UJVn7g4tNk72wvkJFgzZY57mC&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQHyBtsahN13taJyAiiWC2PLmY0QpkFFk0iXQBle7cuASZIOkr-JRyo-CyajqYNVdndGsudlpE-aBA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzHlRrap9bSKmx7fAiN8M_9R_tBolQaiQx6hMmmUzLQIA&oe=69C5DB85') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">📍 Rua São José do Ribamar, nº 157
+Centro do Recife
+
+🗓 segunda a sábado
+🚚 Entregamos onde você estiver
+📲 Chama no WhatsAp...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=sJbxqmW1Bc4Q7kNvwGKwnpz&_nc_oc=AdoNWhZi_9OppKn_JN3hCE9UOj7IKphuPKHnV0vHbMDdJijyMbu6LWeZhpLBBp9UJVn7g4tNk72wvkJFgzZY57mC&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQGY_sIPXfr3vvsj-1_mu1M0lIyShAa8Y-SNNavrwL0PuTTOq62by66Obca4Rw9HYschJiQjFSipKA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzM84r_676X5DRdbbE4nW0BJERAZEM-OQ9Tddyrulz9gA&oe=69C5DB85') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">📍 Rua São José do Ribamar, nº 157
+Centro do Recife
+
+🗓 segunda a sábado
+🚚 Entregamos onde você estiver
+📲 Chama no WhatsAp...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwG6pdft&_nc_oc=AdqWjRh6tdBJbCFnkZiW5AiTneHDw79P78Y4zGR65xtUWtsNed1VAccJMDHWims6UnnW2BwJ5PCGKBSoQvULoWu4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQEpVVNhu0NQieC1s5C_DmpuJ9uMni4ISQCfesKVZOlpIMwD0g3L5Zr7yVeMzeHiU7IU6Z8Ci1yJ_A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyLuCUb5iWLtqQuyloFazCReqiuYDRbL9Pi_-lggniprg&oe=69C5B901') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">A calça perfeita existe e eu vou 🫵🏻 mostrar
+No scuba crepe custando apenas $149,99
+
+📍 Rua São José do Ribamar, nº 157
+Ce...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwEaSlb3&_nc_oc=AdrGD11753cZgGd4Q04gVFAP2g-Qo4rO3btIq9P9HWGfpEGmBjy9b8F9MD5JVWLEc_83flgSFpFR4vt12tFkdgPs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQEGSEphYyDSnA6LouGT3Z7IGWqO5w3HVBViVcuXZF1u_6zv5jCsRUUBWfs8TvZmxX2cBro5cuHsTA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyTPqLWQ0m0204p0oT5ZEE7UiRHN0Vct8hsTPgZ_xQcew&oe=69C5E24F') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">**Calca jeans 👖 feminina
+Com laycra **
+TAM 46 ao 54
+❌ 1 calça por $89,99
+❌ 2 calças por $149,99
+
+💰formas de pagamento: p...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHD4oAS&_nc_oc=AdrSMX7iPz2ctUbzrxddE2nuQpGA0sejlsHaDbgO1Y1uSflj14BUi11Wuvw44q96nau4-PLiv4zb1obOnfZKuPL5&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQGmQqFx1f4kt5CURkjZmfoccEctnkeVmjFfoPd05gEUhU1w78S1WQmsCSSfu8dT_ELF1qXQChzw_Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxSqfyubWyAtGon-bfNPn3mF6JLJat-bkeXL_YCRRty2Q&oe=69C5D921') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Vestido amanda em crepe duna
+Veste do 44 ao 54 por $39,99
+
+📍 Rua São José do Ribamar, nº 157
+Centro do Recife
+
+🗓 segunda...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwFOgRwI&_nc_oc=Adp_X3s_flomvc8PBoLWtpPUj2kZZudDmruylQtZdEhO84LlFhVec9DNJyxjvaelZF0eFljJDVx-C8LPfjF1iE0W&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQF0LaazYLg9OnO6Cl3odzlCzLJEaTareaDuPvBvdCPX3fi36ZPBd6jArJK2jIUcJGah_wt7ZGSduA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx_YNm4WMPtdqepn7h7A3gnDWlsySoT-_NOJzNpwO5vvw&oe=69C5C486') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Aqui você mulher Plussize também acompanha a moda🇧🇷❤️</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHD4oAS&_nc_oc=AdrSMX7iPz2ctUbzrxddE2nuQpGA0sejlsHaDbgO1Y1uSflj14BUi11Wuvw44q96nau4-PLiv4zb1obOnfZKuPL5&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQEQdiXh3LmbR0FAY-XpJojzUMkA58SIk-l7FhDAUQeOokgu2cFy-ikUwCoaeHTrjdOoK2x9m_D3qw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwwMam6cfXRfNU5XPm_BSs4_y5J6IU1G929nAMAQdKttg&oe=69C5D921') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Vestido amanda em crepe duna
+Veste do 44 ao 54 por $39,99
+
+📍 Rua São José do Ribamar, nº 157
+Centro do Recife
+
+🗓 segunda...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwFOgRwI&_nc_oc=Adp_X3s_flomvc8PBoLWtpPUj2kZZudDmruylQtZdEhO84LlFhVec9DNJyxjvaelZF0eFljJDVx-C8LPfjF1iE0W&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQE6bJPYSt0QieSCOz-1OhfeXohARNd1UxzSeFPJUdAQqHA2qWWpgPnGQXC5yRBv6fVPz0P2aLX3KA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyPj0jj_PL_y80q3KhSc575OMhLLPldInhp1IRVZw56hw&oe=69C5C486') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Aqui você mulher Plussize também acompanha a moda🇧🇷❤️</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwEaSlb3&_nc_oc=AdrGD11753cZgGd4Q04gVFAP2g-Qo4rO3btIq9P9HWGfpEGmBjy9b8F9MD5JVWLEc_83flgSFpFR4vt12tFkdgPs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQFCWqPLpA2y1I66RanwR-6SjHrstwRFhGkqdnpbTT6Q9eR-BnY4en3VmB6gnYE9p8rsd1NpPo3RSQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwV7Al3DPlePdsvZGNgeWeif1NTG_gvAE2su0eR8zEXiw&oe=69C5E24F') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">**Calca jeans 👖 feminina
+Com laycra **
+TAM 46 ao 54
+❌ 1 calça por $89,99
+❌ 2 calças por $149,99
+
+💰formas de pagamento: p...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=cGDNO3DrIigQ7kNvwHeDJyR&_nc_oc=AdpEvVVsWNqpUynZp5LAD-sCxIJDvLCqsG2HfazIpa0LCS81eYhVr6gFOZ1RWFcVjKw6xZlJJ5Os-7E2CRY-Uj_s&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQEdTOkcxcENKYAGK0nU2bcYN7gFfa1gnBz0pZ1PKNfzlc02gTvxWFfkodIzpbIb9ZGCpKuCOc8BOg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afzt0QgCCe1pvTWUMY8esXaJkeCz3fD8xuynv6kZSGR7Ww&oe=69C5ED15') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">𝙃𝙤𝙟𝙚 𝙖𝙥𝙚𝙣𝙖𝙨 𝙝𝙤𝙟𝙚 2 𝙘𝙖𝙡𝙘̧𝙖 𝙡𝙞𝙥𝙤 𝙥𝙤𝙧 $139,99</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwHP7Opu&_nc_oc=Ado9kM0eNh3_ui7ZJ9n-NXTwf5yzfLppMcJ6v14fgj1asprDRGg9N7EsxrAwP4HRlg0yJC2Q-_2VCmoFEFudPkk4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQG0BUaJg1sg_jkvJEEvAoL0PVIBU0G6PBL4JmESDaE4AdU7OSNyqEXPgKezG0qd3CkQ4uZTGk9rpg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afw7-1m-whddK73sDsO0BZcW6chRw8J116b5NeDrCg-kXg&oe=69C5CCEE') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Biquine e maiô Plussize do 46 ao 52
+1 por $47,99
+2 por $89,99
+
+📍 Rua São José do Ribamar, nº 157
+Centro do Recife
+
+🗓 seg...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=cGDNO3DrIigQ7kNvwHeDJyR&_nc_oc=AdpEvVVsWNqpUynZp5LAD-sCxIJDvLCqsG2HfazIpa0LCS81eYhVr6gFOZ1RWFcVjKw6xZlJJ5Os-7E2CRY-Uj_s&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQGshb70Y5gBSHRoxPY_1ZMLgY1NJ8f0Z6bup0M1ooAEvJRk01O8iLvCY5scPfIbRsoPIRXWzQT1Sw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzBIlRJdnWWdCa2EKVjKHMUt7A5uR9lA0joXp7mzOtDrA&oe=69C5ED15') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">𝙃𝙤𝙟𝙚 𝙖𝙥𝙚𝙣𝙖𝙨 𝙝𝙤𝙟𝙚 2 𝙘𝙖𝙡𝙘̧𝙖 𝙡𝙞𝙥𝙤 𝙥𝙤𝙧 $139,99</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwHP7Opu&_nc_oc=Ado9kM0eNh3_ui7ZJ9n-NXTwf5yzfLppMcJ6v14fgj1asprDRGg9N7EsxrAwP4HRlg0yJC2Q-_2VCmoFEFudPkk4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQHaVwP7G4ZMuQTnNhDAen3Xg7BLBsTjCO1Xv5zaeUaeNZlbzhq4hXTM9kaYX4oCEqzVtyJlNJnIuA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afy1afElIQ83mLkFzY8RwRfupco9r2tD8GAMWv4YdttF-A&oe=69C5CCEE') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Biquine e maiô Plussize do 46 ao 52
+1 por $47,99
+2 por $89,99
+
+📍 Rua São José do Ribamar, nº 157
+Centro do Recife
+
+🗓 seg...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwELLjBW&_nc_oc=AdqDjnGrzgSV56H2RsVS42fqi_Le61Otn1DJSf1aVyuh1t3l6x2JsS1cNszj63xhyeXJfIHR2YdqvGEdpFlUFnH0&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQGMLp5z2QtOq2UqYpCUMEGwbgJwWb2eT2_c-qcgMhKpccGwvARqdXgUI7IAwZI-wXMrsRcIJi9stg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afwg4D6l017Yk5HdXJ8Fzz7GXCRlanDQLPYmV1vhWeh1HQ&oe=69C5BE48') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Aero look Plussize na PATHIS por $59,99
+
+📍 Rua São José do Ribamar, nº 157
+Centro do Recife
+
+🗓 segunda a sábado
+🚚 Entreg...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwELLjBW&_nc_oc=AdqDjnGrzgSV56H2RsVS42fqi_Le61Otn1DJSf1aVyuh1t3l6x2JsS1cNszj63xhyeXJfIHR2YdqvGEdpFlUFnH0&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQE_Y8pGMZr-Ufdg_amhVHV9XJx1xmJZwdnRUuW-KAX231n1CjU-sdxkGb2DR5UBF5GZpXbK5PETCQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyvW4buyoEXA5hDJBZS2og5Suv1L-SMOpRIO0rjMOubdQ&oe=69C5BE48') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Aero look Plussize na PATHIS por $59,99
+
+📍 Rua São José do Ribamar, nº 157
+Centro do Recife
+
+🗓 segunda a sábado
+🚚 Entreg...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFCB8Zc&_nc_oc=AdpVyutlMYQG0ksnsfK2vK_h9w1qsC2WBtak48_gc5fQuQpktFZVKGfqnRUWxViyXORdTsrs8iW5if-9CCtH_Frs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQFPZlcoEJ5e_gK58mqDSQ-oNue0UZktIZHr4Sq7aJxFhr5dQCmvPHkmSK9XcXnXSAZmsqNUtUk__w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz_PgEm4lN7sWaM2JR3uXP5iCpLyGyb4ij7VpIfRYzN7g&oe=69C5EFDE') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Calca jeans 👖 feminina
+Com laycra **
+TAM 46 ao 54
+❌ 1 calça por $89,99
+❌ 2 calças por $149,99
+
+💰formas de pagamento: pix...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFCB8Zc&_nc_oc=AdpVyutlMYQG0ksnsfK2vK_h9w1qsC2WBtak48_gc5fQuQpktFZVKGfqnRUWxViyXORdTsrs8iW5if-9CCtH_Frs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQH0BvCJRKReZ9tTUqq1BkWbU0e32gyiDwUUTliV1PLpjihBuovMyj7fBDsW3aiLF1o76lUMfH1Bnw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwNEsu_v5NfnFlGXvgXREGrMo_NQSblwPSZN2gDs4w2KA&oe=69C5EFDE') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Converse conosco</h3>
+            <p class="card-body">Calca jeans 👖 feminina
+Com laycra **
+TAM 46 ao 54
+❌ 1 calça por $89,99
+❌ 2 calças por $149,99
+
+💰formas de pagamento: pix...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637882998_2007366930160828_319968532192488573_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=sgEc7s34VgQQ7kNvwGncRh2&_nc_oc=AdohPy9QyPnUKd65tSj0LkNUNbY6A_51gkl6H-OtEB3doadzxHx5Q525UPJg9jMwhDOOaegxBWEkHnXgzDXmH958&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQHCKGYVqkHxRAm8ZJY9wnRNUAjJ_udb5DImrZ62LMD0JtZE8-brN2mu0LqkCC-II0RUeucxNe-new&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfwhjvJLndqCJmRBoXHv8W3eTjKHys8vRSIRIq_G2n8kpA&oe=69C5D78F') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">AD07 - Reels localização</h3>
+            <p class="card-body">Aqui na FONTE da Moda plussize, você mulher real encontra looks do 42 ao 56. Me conta já sabe aonde fica a Loja Pathis ⁉...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.13418-10/566566632_716581460696588_3649711858675149011_n.jpg?_nc_cat=104&ccb=1-7&_nc_ohc=sbCUVrtDycsQ7kNvwENz0fM&_nc_oc=AdqEqpFJnBKyX8qfbwE6SaPBxP4zV-ZBLnMj6jUVuJXCs8KKfUu0s2melut6D2yDHQbLBeR-ph8wqi1wBQXu0-Gh&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQEtly-OHVTKyQgNUY36japlJkCnyAu-xXV8bn6UgeuqZcQDpXGOSnSptuJdwdJSd4V90xx38wC-6g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfwcM6l3MwED8fOoea3E_NfsBda20ziOrLVinMawydCAYg&oe=69C5CAF7') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">AD14 - Reels blusa em crepe</h3>
+            <p class="card-body">✨ Uma peça, mil possibilidades!
+A blusa em crepe duna de alça chegou para compor seus looks de todos os jeitos. 💕
+
+📍Rua ...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/561618054_1169833555010573_1429729776748049899_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=VI2lFV8cM6wQ7kNvwHRD44j&_nc_oc=AdqSHPjy34HuQbXmBpoOZ2H25EdXFhJ0xCykD4GrypbCBiOW3dpt1G3BE9LHBgC12pOobz0pd-vaRG0mGuEsr_Mv&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQFnoFrD6z7Rh41M8IEH1ll4PFzSovq1n6G7VOS0zZFk0jkNZmoHaNjRHau4Z3GXm_zVHF0ao7UKDg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afyf4j2b3QaaNIwNHtf1Cm4qOQ-w9Dj3NBUKWFvEs3ziXQ&oe=69C5BB02') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">AD13 - Reels macacão patricia</h3>
+            <p class="card-body">✨ macacão Patrícia chegou com uma explosão de tendência para o corpo plussize 💕
+
+📍Rua São José do Ribamar n 157, bairro ...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/596018549_1857536081821570_8205758525858578859_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=OADRqaOCUEkQ7kNvwEMdfYR&_nc_oc=AdpeF45mGI3H-18WSwmVdwm0KaiTPP_8HitSMcuVSZnxVbhU-OKqPEN8oVtjPp2zWkAYcWQNYsmcOEJ6y8gxmYNL&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQGoSScIJUCPIZ5UlvJsG5laQ6xM19wUVrlNcyGM9jtD8TnDTpzTNRG1EwNxZX5HNd9Rg08El1WMHA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzyenKgGXDxiNKV-b1GIe7ietc9kTmSyFFapUIwUTC6og&oe=69C5C3FF') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Post do Instagram: Medidas reais. Corpo real....</h3>
+            <p class="card-body">Medidas reais. Corpo real. Beleza real.
+Nossa Musa 58 prova: a moda é feita pra você! 🧡🔥
+
+#tamanhoplussize #lojaplussize</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/568721245_2278444489243145_5377558617145848829_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EHTLsxkfkc8Q7kNvwFK4jk5&_nc_oc=AdpAvpfWU3SWDrMhVu0ZZVDF2Jrk2bHBYH-Qamz-wQuc0nmY-Il1-kx1M4o0bp1JcJaxOvQFzH4B9j4zTIs_1HRV&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQFkYZY7V5l--bg4BqRz4emVvFlevqZlB4yTA-wJ20LEMLaju3CbwEGOkO02w4wRzX3RdGc6n5Z2Fg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afww8LHCO0LtQIWCst6ua1LT4-qmMPL9iZPxRhgTFw8Kgg&oe=69C5E6AF') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Post do Instagram: ✨ conjunto em malha crepe por...</h3>
+            <p class="card-body">✨ conjunto em malha crepe por R$49.99
+Veste do 44 ao 52 💕
+
+📍Rua São José do Ribamar n 157, bairro de São José/ Centro do...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/563383688_683493447674015_677251340666898760_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EdZKjhIRaR8Q7kNvwGU0PJy&_nc_oc=AdpMHNL0V7Z-uqprpeoLZXEcTtnFDx9PP-SNej7aCgwHr5rWSiTnGmCV7o6NJL_DLI7ijFhX_ce_xAcpt9-7hW1D&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQFfmxSf6lqKcgwrNfV-acF0JbDqm-zxLOtz6XUMs7hvjyVdW2JHU-yxoN1vWgFtrPMwc2LbjYc0Cw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzzFxszbQEp_H-D-8b6M0DsxArsh_rEmJK99ybFN-vG8A&oe=69C5DE78') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Post do Instagram: “Quem melhor pra falar da...</h3>
+            <p class="card-body">“Quem melhor pra falar da Pathis do que quem veste de verdade? 💖
+Assiste o que nossa musa contou — é de arrepiar!”
+
+“Que...</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/553489208_765682722900608_3536675434902768250_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=R4qMrh-2628Q7kNvwEHBPGi&_nc_oc=AdqyizNTMyCydH1HfR5Ob-8ASdQq_vjJ-rIIyJaxSosKjE1u33ImPTbblcr78BISbcH8bs93nh6Nja5sfytZb_SL&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=2jWR4If_qmWu05aMADIAFQ&_nc_tpa=Q5bMBQES4HXUsBzAHWYHZa_FvjjJHvcuqPRnLqS1_-RrilyrDgpi3FvOGZZSMmB47xXaJDV4MAzmOKVHPA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzVgNn3f_bjyre-L5ZQrtre2kjfpTkn317ZdlcW6yVCuw&oe=69C5BB67') center/cover no-repeat;"></div>
+        <div class="card-info">
+            <span class="badge">✅ ACTIVE</span>
+            <h3 class="card-title">Post do Instagram: O #sambarecife está chegando...</h3>
+            <p class="card-body">O #sambarecife está chegando mulherão! 🥳🍺
+
+#plussize #lojasderoupasfemininas #viral #modafeminina #lookdodia #lojaplussi...</p>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+  Powered by <span>EcoHub</span> · Gerado automaticamente
+</footer>
+
+</body>
+</html>
