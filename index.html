@@ -3,580 +3,210 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HUB de Anúncios — Loja pathis</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta http-equiv="refresh" content="900">
+<title>EcoHub — Loja Pathis</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0c0c0e; --surface: #141417; --surface2: #1c1c21;
+    --border: #2a2a32; --green: #22c55e; --text: #e8e8f0;
+    --text-muted: #888899; --card-bg: #18181d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #0d0d0d;
-  color: #e0e0e0;
-  min-height: 100vh;
-}
+  .header {
+    background: linear-gradient(135deg, #0c0c0e 0%, #141428 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo {
+    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
+    background: linear-gradient(135deg, #6c63ff, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .client-name { font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; margin-top: 4px; }
+  .header-stats { display: flex; gap: 16px; align-items: center; }
+  .stat-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 100px; padding: 6px 14px; font-size: 12px; font-weight: 500;
+  }
+  .stat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .updated { font-size: 11px; color: var(--text-muted); }
 
-/* TOPBAR */
-.topbar {
-  background: #111;
-  border-bottom: 1px solid #222;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-.topbar-brand {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #555;
-}
-.topbar-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-}
-.topbar-meta {
-  font-size: 0.78rem;
-  color: #444;
-}
+  .main { max-width: 1400px; margin: 0 auto; padding: 32px 24px; }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* STATS */
-.stats-bar {
-  background: #111;
-  border-bottom: 1px solid #1a1a1a;
-  padding: 1rem 2rem;
-  display: flex;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-.stat {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-.stat-value {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #4ade80;
-}
-.stat-label {
-  font-size: 0.75rem;
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
+  .campaign-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; margin-bottom: 16px; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .campaign-card:hover { border-color: #3a3a4a; }
+  .campaign-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px; cursor: pointer; user-select: none;
+    transition: background 0.15s;
+  }
+  .campaign-header:hover { background: rgba(108,99,255,0.04); }
+  .campaign-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: linear-gradient(135deg, #6c63ff22, #6c63ff44);
+    border: 1px solid #6c63ff44;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .campaign-info { flex: 1; min-width: 0; }
+  .campaign-name {
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    color: var(--text); white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; margin-bottom: 4px;
+  }
+  .campaign-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; text-transform: uppercase; }
+  .badge-active { background: #22c55e22; color: #22c55e; border: 1px solid #22c55e44; }
+  .badge-obj { background: #6c63ff22; color: #a78bfa; border: 1px solid #6c63ff33; font-size: 10px; padding: 2px 8px; border-radius: 100px; }
+  .campaign-count { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+  .campaign-arrow { color: var(--text-muted); transition: transform 0.3s; font-size: 18px; flex-shrink: 0; }
+  .campaign-arrow.open { transform: rotate(180deg); }
 
-/* MAIN */
-.main {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1.5rem 2rem 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+  .campaign-body { display: none; border-top: 1px solid var(--border); padding: 24px; }
+  .campaign-body.open { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
 
-/* CAMPAIGN BLOCK */
-.campaign-block {
-  background: #141414;
-  border: 1px solid #222;
-  border-radius: 14px;
-  overflow: hidden;
-}
-.campaign-header {
-  padding: 1.1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #1e1e1e;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.campaign-header-left {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-}
-.campaign-icon {
-  width: 38px;
-  height: 38px;
-  background: #1e1e1e;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-.campaign-name {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #f0f0f0;
-  margin-bottom: 0.35rem;
-  line-height: 1.3;
-}
-.campaign-badges {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-.badge {
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 0.2rem 0.55rem;
-  border-radius: 20px;
-  letter-spacing: 0.04em;
-}
-.badge--active {
-  background: rgba(74,222,128,0.15);
-  color: #4ade80;
-  border: 1px solid rgba(74,222,128,0.25);
-}
-.badge--obj {
-  background: rgba(139,92,246,0.15);
-  color: #a78bfa;
-  border: 1px solid rgba(139,92,246,0.25);
-}
-.campaign-count {
-  font-size: 0.82rem;
-  color: #555;
-  white-space: nowrap;
-}
+  .ads-label {
+    font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 14px;
+  }
+  .ads-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
 
-/* SECTION LABEL */
-.campaign-section-label {
-  padding: 0.75rem 1.5rem 0.5rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #444;
-}
+  .ad-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .ad-card:hover { transform: translateY(-2px); border-color: #3a3a50; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .ad-thumb { position: relative; width: 100%; aspect-ratio: 1/1; background: var(--surface2); overflow: hidden; }
+  .ad-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+  .ad-card:hover .ad-thumb img { transform: scale(1.04); }
+  .ad-thumb-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 28px; }
+  .ad-info { padding: 10px 12px 8px; flex: 1; }
+  .ad-name {
+    font-size: 11px; font-weight: 500; color: var(--text); line-height: 1.4; margin-bottom: 6px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .btn-ver {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    margin: 0 12px 12px; padding: 7px 10px;
+    background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 8px; color: #a78bfa; font-size: 10px; font-weight: 700;
+    text-decoration: none; transition: all 0.2s ease;
+  }
+  .btn-ver:hover { background: rgba(108,99,255,0.25); }
+  .btn-ver svg { width: 12px; height: 12px; fill: #a78bfa; flex-shrink: 0; }
 
-/* ADS GRID */
-.ads-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-  padding: 0 1.5rem 1.5rem;
-}
-
-/* AD CARD */
-.ad-card {
-  background: #1a1a1a;
-  border: 1px solid #252525;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.ad-card:hover {
-  border-color: #4ade80;
-  transform: translateY(-3px);
-}
-.ad-thumb {
-  width: 100%;
-  height: 160px;
-  background: #222;
-}
-.ad-thumb--empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  font-size: 2rem;
-  opacity: 0.4;
-}
-.ad-card-info {
-  padding: 0.75rem;
-}
-.ad-name {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #ccc;
-  margin-bottom: 0.6rem;
-  line-height: 1.4;
-  min-height: 2.2em;
-}
-.fb-btn {
-  display: block;
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #818cf8;
-  background: rgba(129,140,248,0.08);
-  border: 1px solid rgba(129,140,248,0.2);
-  border-radius: 6px;
-  padding: 0.4rem 0.5rem;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-.fb-btn:hover {
-  background: rgba(129,140,248,0.18);
-}
-.fb-btn--disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.78rem;
-  color: #2a2a2a;
-  border-top: 1px solid #181818;
-}
-.footer span { color: #4ade80; }
-
-@media (max-width: 640px) {
-  .main { padding: 1rem; }
-  .ads-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
-  .topbar, .stats-bar { padding: 1rem; }
-}
+  .footer {
+    text-align: center; padding: 32px; color: var(--text-muted);
+    font-size: 12px; border-top: 1px solid var(--border); margin-top: 48px;
+  }
+  @media (max-width: 600px) {
+    .header { padding: 16px; flex-wrap: wrap; gap: 12px; }
+    .header-stats { display: none; }
+    .ads-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  }
 </style>
 </head>
 <body>
 
-<div class="topbar">
+<div class="header">
   <div>
-    <div class="topbar-brand">EcoHub · Relatório de Anúncios</div>
-    <div class="topbar-title">Loja pathis</div>
+    <div class="logo">EcoHub</div>
+    <div class="client-name">Loja Pathis — Meta Ads</div>
   </div>
-  <div class="topbar-meta">Atualizado em 22/03/2026 às 12:05</div>
-</div>
-
-<div class="stats-bar">
-  <div class="stat">
-    <div class="stat-value">26</div>
-    <div class="stat-label">Anúncios ativos</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">7</div>
-    <div class="stat-label">Campanhas</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">Live</div>
-    <div class="stat-label">Status</div>
+  <div class="header-stats">
+    <div class="stat-pill"><span class="stat-dot"></span> 7 campanhas ativas</div>
+    <div class="stat-pill"><span style="width:6px;height:6px;border-radius:50%;background:#6c63ff;box-shadow:0 0 6px #6c63ff;display:inline-block"></span> 26 criativos ativos</div>
+    <div class="updated">Atualizado: 22/03/2026 às 21:09</div>
   </div>
 </div>
 
-<main class="main">
-<div class="campaign-block">
-    <div class="campaign-header">
-      <div class="campaign-header-left">
-        <div class="campaign-icon">📣</div>
-        <div>
-          <div class="campaign-name">Captação | [LEAD] [QUENTE] [ 4º GRUPO VIP]</div>
-          <div class="campaign-badges">
-            <span class="badge badge--active">ATIVO</span>
-            <span class="badge badge--obj">Leads</span>
-          </div>
-        </div>
-      </div>
-      <div class="campaign-count">1 criativos</div>
-    </div>
-    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
-    <div class="ads-grid">
-      <div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/626154347_929943102814974_4907290852568821446_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=erIJ6G3GvJwQ7kNvwEFLHQh&_nc_oc=AdofDfZcDxY1MShnSJ2t4KLJM9wL4edXcd7wirbBgjPjuknFYozdFM7TWIwapVlzvkk7DKNc4rGm8imxku0sT9ma&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQEmNx0oliOcoXUlEPjEH8aNz6uX2Bbydp1dwtXqKf3PaV2Jan66vSgBRY9Qy3qD9n01MliBpdYrEA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzNlT_CFPtwi3wNomT0FzAPvbcBHvnrjqD5YwT3s7XHZw&oe=69C5E551') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">AD03 - Reels grupo vip</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-    </div>
-  </div>
-<div class="campaign-block">
-    <div class="campaign-header">
-      <div class="campaign-header-left">
-        <div class="campaign-icon">📣</div>
-        <div>
-          <div class="campaign-name">Venda | [MENSAGEM] [WHATSAPP] [MISTO]</div>
-          <div class="campaign-badges">
-            <span class="badge badge--active">ATIVO</span>
-            <span class="badge badge--obj">Engajamento</span>
-          </div>
-        </div>
-      </div>
-      <div class="campaign-count">20 criativos</div>
-    </div>
-    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
-    <div class="ads-grid">
-      <div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwG6pdft&_nc_oc=AdqWjRh6tdBJbCFnkZiW5AiTneHDw79P78Y4zGR65xtUWtsNed1VAccJMDHWims6UnnW2BwJ5PCGKBSoQvULoWu4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHjmM2feKt2v31qZTFFPNWNlqqFEyzxPDaHH9-Zy6vF3lJiso4LzGfMeXGJ4C7DnORk_MEfyuPi2g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyREc7cARnsv7gq3QDO9XY09TfpskgL1TcBWLE8jVZxcA&oe=69C5F141') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=sJbxqmW1Bc4Q7kNvwGKwnpz&_nc_oc=AdoNWhZi_9OppKn_JN3hCE9UOj7IKphuPKHnV0vHbMDdJijyMbu6LWeZhpLBBp9UJVn7g4tNk72wvkJFgzZY57mC&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFNac2yqqH_ZehlFhb-uITt551_s7JW0y1_tA9DLu3FJ2nmx07n0a2695Krs3JN8umCwgI8HCZMxg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwMvFv7QP4ZDinR2ef_FLEqAm3rXSLqree8JCzvJQnM-g&oe=69C5DB85') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=sJbxqmW1Bc4Q7kNvwGKwnpz&_nc_oc=AdoNWhZi_9OppKn_JN3hCE9UOj7IKphuPKHnV0vHbMDdJijyMbu6LWeZhpLBBp9UJVn7g4tNk72wvkJFgzZY57mC&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQG-JEsKvNZrhutWsIXF5CtBN8PPAeWc5Iyw_v6UjQsvemZrVoNm96wpvMoGCU5v8ct55HsPlSxr5Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx_-fNThp_KM4tP-Gkr9TMacXion2mpRjqiQwuYAp_E8Q&oe=69C5DB85') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwG6pdft&_nc_oc=AdqWjRh6tdBJbCFnkZiW5AiTneHDw79P78Y4zGR65xtUWtsNed1VAccJMDHWims6UnnW2BwJ5PCGKBSoQvULoWu4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQF_5jQ1rFOUnXT_1B9ofj4tYwaWrZ7o8duPYe-eKUdjyZrxfjQLt-h8r6hkZC7H5GknVvIt5V1LBg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz630X4QFLcyBLxtLWSR45TTBJOMrX9Cj4xDxMZylHe6g&oe=69C5F141') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwEaSlb3&_nc_oc=AdrGD11753cZgGd4Q04gVFAP2g-Qo4rO3btIq9P9HWGfpEGmBjy9b8F9MD5JVWLEc_83flgSFpFR4vt12tFkdgPs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHJ2fP1z8u0q4wXZVRjMdqya1blYHYDGZXe8CYQrDPYjEV3SAWHngOw8QQN8ZuKr-3zNDmQKWA7zw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzNI4_WJ3ja7LGbdwBUdWK3a3ouPrWNWQ9nHnc_Ao2HcA&oe=69C5E24F') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHD4oAS&_nc_oc=AdrSMX7iPz2ctUbzrxddE2nuQpGA0sejlsHaDbgO1Y1uSflj14BUi11Wuvw44q96nau4-PLiv4zb1obOnfZKuPL5&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQF9kD0QsYrEltWtYACI25Xd-XmAxxUXKMSJ-dzsScyteOP2Z7okpVjFOUqpSjm7aS0UjeQGMm5CCg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyaKo9apL0ukTb0mTGmuq8rw6NfkdGIIFGfj9_LoAGe5Q&oe=69C5D921') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwFOgRwI&_nc_oc=Adp_X3s_flomvc8PBoLWtpPUj2kZZudDmruylQtZdEhO84LlFhVec9DNJyxjvaelZF0eFljJDVx-C8LPfjF1iE0W&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHaktbNMKgt0xTH8YP_mmOY_JF06xkiRgqnDatXIB9BKW15OG7B0gQbtLTZWuY5OBTdHrdWdDw70w&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzcSmZ-_fEA_h9rtMjhwHIwz-i6PcIacfpC4bzmWjq4Gw&oe=69C5C486') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHD4oAS&_nc_oc=AdrSMX7iPz2ctUbzrxddE2nuQpGA0sejlsHaDbgO1Y1uSflj14BUi11Wuvw44q96nau4-PLiv4zb1obOnfZKuPL5&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHwydcrMf6xLSqD6dzqENUcMBQ2P6oqfpP0XAk6LDfdVk9L4uKknQ-2G7F3gk7pHL-BxzsxxGhE9Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx8nousR_BCeqNsFUBJS-RDrxLtz7b-PoDc-Wb5p2ZsgA&oe=69C5D921') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwFOgRwI&_nc_oc=Adp_X3s_flomvc8PBoLWtpPUj2kZZudDmruylQtZdEhO84LlFhVec9DNJyxjvaelZF0eFljJDVx-C8LPfjF1iE0W&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHaFIEqFrblOdRphvZsjmc02hksGUCRtyZPiz-1pAS90o2QncEgHizvYm9_pDN50e6LyIuJIQdXmQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxhTjQkV8kyYBBDxLyVl866PFEAodyAal0o_2B0tilR0w&oe=69C5C486') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwEaSlb3&_nc_oc=AdrGD11753cZgGd4Q04gVFAP2g-Qo4rO3btIq9P9HWGfpEGmBjy9b8F9MD5JVWLEc_83flgSFpFR4vt12tFkdgPs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFVZGHCefu1l3DjVIMQYUZ3U0SVjDXip52ClgR7oZXonYCiV21JANhg_f8ULhE5qzDdDLkrczWmoA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwEHQ1gG7kFOJTZHJmYH8duWdwUU9QGOfIyyO-8Sa9Gxg&oe=69C5E24F') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=cGDNO3DrIigQ7kNvwHeDJyR&_nc_oc=AdpEvVVsWNqpUynZp5LAD-sCxIJDvLCqsG2HfazIpa0LCS81eYhVr6gFOZ1RWFcVjKw6xZlJJ5Os-7E2CRY-Uj_s&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFuzcvibOCaV_kT49s9jgAAKVuCrjAIUny6xLy8Z0PrUlFKC0cFxpLIR9f0B4L3wG4Dwy1fK5Q0ig&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxN03FLok_3Trggwec7aMKYYW86aLqdIP1b9Tf7xfML2A&oe=69C5ED15') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwHP7Opu&_nc_oc=Ado9kM0eNh3_ui7ZJ9n-NXTwf5yzfLppMcJ6v14fgj1asprDRGg9N7EsxrAwP4HRlg0yJC2Q-_2VCmoFEFudPkk4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQEa4TmF42v2bDhctF6CrfCjywuiQwIkEXO5eQZlNnZKFlk4COr6k0NM3hypuZ64iyESR_c0uStL2Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwWwBHhjC0SvoOfxiTqTG_uEaygdr1PmuC0L5j7v0vGNg&oe=69C5CCEE') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=cGDNO3DrIigQ7kNvwHeDJyR&_nc_oc=AdpEvVVsWNqpUynZp5LAD-sCxIJDvLCqsG2HfazIpa0LCS81eYhVr6gFOZ1RWFcVjKw6xZlJJ5Os-7E2CRY-Uj_s&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQEfXPN6Z6J6oJKlcdnDHLGpxDjPJ-mlJ9m2k1Qfq_tJ8bzkDdr5V7W0TrNFk6GyAW4GTm-q77md4Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfydYna4UUl5Lz0h-WthRlok9qfQx9YAt0VJA0n7v7RXPw&oe=69C5ED15') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwHP7Opu&_nc_oc=Ado9kM0eNh3_ui7ZJ9n-NXTwf5yzfLppMcJ6v14fgj1asprDRGg9N7EsxrAwP4HRlg0yJC2Q-_2VCmoFEFudPkk4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQF8U_F7cmeArMZAo9R_jOkJxEovyGMVNzT4O-VoOhuRF3AE4qQ6VxBpbgEZvbjMee3pEt3wciNVRA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxyVN6o4PLfG3MnwowOFHvpVCJp-CogvA4_hCEKGtqmTA&oe=69C5CCEE') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwELLjBW&_nc_oc=AdqDjnGrzgSV56H2RsVS42fqi_Le61Otn1DJSf1aVyuh1t3l6x2JsS1cNszj63xhyeXJfIHR2YdqvGEdpFlUFnH0&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHBCB_kEGLrqivxuef1FgrPfomih--b-eC1O1cJ0jlplY9ywGtXQsQNGBjatRe_WukXFgZzhzSQEA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxo9jTWdO_GGRKF3X8eetSVZzVpU8TDWFzwyR1OJmgKNw&oe=69C5BE48') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwELLjBW&_nc_oc=AdqDjnGrzgSV56H2RsVS42fqi_Le61Otn1DJSf1aVyuh1t3l6x2JsS1cNszj63xhyeXJfIHR2YdqvGEdpFlUFnH0&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQEmFnBd5_avaK_wDGmaSPPrctGO14GGmLl5RSWCkDvGBrzxwef0v05GcP_9mU27Tgtd5zGXlpbReA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afw-08wxBMELNnUHY533VXjlUzLYedem42FmI1j4NMD4fg&oe=69C5BE48') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFCB8Zc&_nc_oc=AdpVyutlMYQG0ksnsfK2vK_h9w1qsC2WBtak48_gc5fQuQpktFZVKGfqnRUWxViyXORdTsrs8iW5if-9CCtH_Frs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFu757uAKCa9inD3vIGlXXdUowQciSM1PcAhwdP_Hh42zsHKriE2E7VqcswQgcT7TJbP3gBpXtB3g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxl1SsDvlGLW-xkoxaZKvCNrqnOB9nTNi9bUk0cBs9SgQ&oe=69C5EFDE') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFCB8Zc&_nc_oc=AdpVyutlMYQG0ksnsfK2vK_h9w1qsC2WBtak48_gc5fQuQpktFZVKGfqnRUWxViyXORdTsrs8iW5if-9CCtH_Frs&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQF5mqq68sc4C1j_TrU3r5NGcQ_rWD9gkFUgilprQkc2JeCvVzuEm0RzpZUqUstL4JBF0Rf5ruiFBA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyZafLIDYocJ56gOGJaPPutNCWu7FqAv94d3VSi9vvt6g&oe=69C5EFDE') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Converse conosco</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.13418-10/566566632_716581460696588_3649711858675149011_n.jpg?_nc_cat=104&ccb=1-7&_nc_ohc=sbCUVrtDycsQ7kNvwENz0fM&_nc_oc=AdqEqpFJnBKyX8qfbwE6SaPBxP4zV-ZBLnMj6jUVuJXCs8KKfUu0s2melut6D2yDHQbLBeR-ph8wqi1wBQXu0-Gh&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQGhcEaPM6TrTz6cwwBdcoZmIn2e6u__9YP-3V9xHkAOs6kGyn1HlqwHjdmpEMwwnJMzFQmuqLONwQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfyHSbfoLGgRFfRLO96opQBRkB6gl18Pesmj8iFufrM5mQ&oe=69C5CAF7') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">AD14 - Reels blusa em crepe</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-<div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/561618054_1169833555010573_1429729776748049899_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=VI2lFV8cM6wQ7kNvwHRD44j&_nc_oc=AdqSHPjy34HuQbXmBpoOZ2H25EdXFhJ0xCykD4GrypbCBiOW3dpt1G3BE9LHBgC12pOobz0pd-vaRG0mGuEsr_Mv&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQH3L1ZKSSy6rYRAI6Jlv4-LBnAY3Qr2D0W8zAonyyHFFwaeaXoZHRJaK1ZKIm8XbFkEx3l-QbgeeQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afy3RtjPlVDewMA7rmh9HEocK4f8UR744gBxmZBaN20tig&oe=69C5F342') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">AD13 - Reels macacão patricia</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-    </div>
-  </div>
-<div class="campaign-block">
-    <div class="campaign-header">
-      <div class="campaign-header-left">
-        <div class="campaign-icon">📣</div>
-        <div>
-          <div class="campaign-name">Relacionamento | [VIDEOVIEW] [FRIO] [LOCALIZAÇÃO]</div>
-          <div class="campaign-badges">
-            <span class="badge badge--active">ATIVO</span>
-            <span class="badge badge--obj">Engajamento</span>
-          </div>
-        </div>
-      </div>
-      <div class="campaign-count">1 criativos</div>
-    </div>
-    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
-    <div class="ads-grid">
-      <div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637882998_2007366930160828_319968532192488573_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=sgEc7s34VgQQ7kNvwGncRh2&_nc_oc=AdohPy9QyPnUKd65tSj0LkNUNbY6A_51gkl6H-OtEB3doadzxHx5Q525UPJg9jMwhDOOaegxBWEkHnXgzDXmH958&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQG30nxXktiyV3w9zePc1CB8hW8u3ejwrRT6xzzR5R0ZDsoUYzq3Hv8GvnVoy2JG3lpN39rpNKz0rA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfyB13AwAXOEfCh5E0RrEYGEFdq4SdzHiHx_bccf0uqmxw&oe=69C5D78F') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">AD07 - Reels localização</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-    </div>
-  </div>
-<div class="campaign-block">
-    <div class="campaign-header">
-      <div class="campaign-header-left">
-        <div class="campaign-icon">📣</div>
-        <div>
-          <div class="campaign-name">Post do Instagram: Medidas reais. Corpo real....</div>
-          <div class="campaign-badges">
-            <span class="badge badge--active">ATIVO</span>
-            <span class="badge badge--obj">Cliques</span>
-          </div>
-        </div>
-      </div>
-      <div class="campaign-count">1 criativos</div>
-    </div>
-    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
-    <div class="ads-grid">
-      <div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/596018549_1857536081821570_8205758525858578859_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=dCkU_259WoEQ7kNvwGxDgNP&_nc_oc=Adq2TIOFCO0OXJMRpLY0fJZ88TFhBkCF15Vrgp7jqdNjOwJFzehK-FOZ0chtW8Lz-wspZ5a4K7okSHo2R0wSExed&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQFvUONDXL0bw4mCdLLWPyQXcyEEVtUOLFQnUJrTAFQIZQSDZ0rWOTX8omf6mDxukCn74ugVj7nTzg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afz_KjO0pUWm5A7Yzsu6x_8HUwkVPVGZRxCX_o5rkBREAg&oe=69C5C3FF') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Post do Instagram: Medidas reais. Corpo real....</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-    </div>
-  </div>
-<div class="campaign-block">
-    <div class="campaign-header">
-      <div class="campaign-header-left">
-        <div class="campaign-icon">📣</div>
-        <div>
-          <div class="campaign-name">Post do Instagram: ✨ conjunto em malha crepe por...</div>
-          <div class="campaign-badges">
-            <span class="badge badge--active">ATIVO</span>
-            <span class="badge badge--obj">Cliques</span>
-          </div>
-        </div>
-      </div>
-      <div class="campaign-count">1 criativos</div>
-    </div>
-    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
-    <div class="ads-grid">
-      <div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/568721245_2278444489243145_5377558617145848829_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EHTLsxkfkc8Q7kNvwFK4jk5&_nc_oc=AdpAvpfWU3SWDrMhVu0ZZVDF2Jrk2bHBYH-Qamz-wQuc0nmY-Il1-kx1M4o0bp1JcJaxOvQFzH4B9j4zTIs_1HRV&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHkdKmz4m_F8zz1GB045qPgIsD9rYnca5FPLT6eE_onAAP1O8yNjBdTa0P0D_eDsJ-sTo1_qGcfKA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afyq3_JCKb_O3txQsio1Bf4Grnmcd2VenE2ykY2jJ0pXLA&oe=69C5E6AF') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Post do Instagram: ✨ conjunto em malha crepe por.....</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-    </div>
-  </div>
-<div class="campaign-block">
-    <div class="campaign-header">
-      <div class="campaign-header-left">
-        <div class="campaign-icon">📣</div>
-        <div>
-          <div class="campaign-name">Post do Instagram: “Quem melhor pra falar da...</div>
-          <div class="campaign-badges">
-            <span class="badge badge--active">ATIVO</span>
-            <span class="badge badge--obj">Cliques</span>
-          </div>
-        </div>
-      </div>
-      <div class="campaign-count">1 criativos</div>
-    </div>
-    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
-    <div class="ads-grid">
-      <div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/563383688_683493447674015_677251340666898760_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EdZKjhIRaR8Q7kNvwGU0PJy&_nc_oc=AdpMHNL0V7Z-uqprpeoLZXEcTtnFDx9PP-SNej7aCgwHr5rWSiTnGmCV7o6NJL_DLI7ijFhX_ce_xAcpt9-7hW1D&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQHQT5qPmHnhrzLlYFUFZvgjGOU__MeFha4XQAPcLkrfCnx0f498VMtfzkGew2e5MpmaZrr3Atq3yw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afyty_B-MJs-fnOicWAyOkzhjamaJxjPkLvXLg2Xk0QE8g&oe=69C5DE78') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Post do Instagram: “Quem melhor pra falar da...</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-    </div>
-  </div>
-<div class="campaign-block">
-    <div class="campaign-header">
-      <div class="campaign-header-left">
-        <div class="campaign-icon">📣</div>
-        <div>
-          <div class="campaign-name">Post do Instagram: O #sambarecife está chegando...</div>
-          <div class="campaign-badges">
-            <span class="badge badge--active">ATIVO</span>
-            <span class="badge badge--obj">Cliques</span>
-          </div>
-        </div>
-      </div>
-      <div class="campaign-count">1 criativos</div>
-    </div>
-    <div class="campaign-section-label">CRIATIVOS ATIVOS</div>
-    <div class="ads-grid">
-      <div class="ad-card">
-      <div class="ad-thumb" style="background:url('https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/553489208_765682722900608_3536675434902768250_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=R4qMrh-2628Q7kNvwEHBPGi&_nc_oc=AdqyizNTMyCydH1HfR5Ob-8ASdQq_vjJ-rIIyJaxSosKjE1u33ImPTbblcr78BISbcH8bs93nh6Nja5sfytZb_SL&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=aJgCqxPdlkpENlBwom_Rjw&_nc_tpa=Q5bMBQGmd8b-xFoY4ZlYzzfcP0HLYys4aAeOk4a2uCgXZG63NRKgBIadNQXTD6fgCQcvbNzFMHhwZlG_Bg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afw1FcBVg8_kVUHZqApoNoFI03ggitpbfJiEBzNz3tK84Q&oe=69C5F3A7') center/cover no-repeat;"></div>
-      <div class="ad-card-info">
-        <p class="ad-name">Post do Instagram: O #sambarecife está chegando...</p>
-        <span class="fb-btn fb-btn--disabled">↗ Ver no Facebook</span>
-      </div>
-    </div>
-    </div>
-  </div>
-</main>
+<div class="main">
+  <div class="section-title">Campanhas ativas</div>
+  <div id="container"></div>
+</div>
 
-<footer class="footer">
-  Powered by <span>EcoHub</span> · Gerado automaticamente
-</footer>
+<div class="footer">EcoHub · Loja Pathis · Atualizado automaticamente a cada 15 minutos · 22/03/2026 às 21:09</div>
 
+<script>
+const CAMPS = [{"id": "120236234071130020", "name": "Captação | [LEAD] [QUENTE] [ 4º GRUPO VIP]", "objective": "OUTCOME_LEADS", "ads": [{"id": "120242234861820020", "name": "AD03 - Reels grupo vip", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/626154347_929943102814974_4907290852568821446_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=erIJ6G3GvJwQ7kNvwGUZead&_nc_oc=AdqtD0YpM4KyQXBN-FszUiTkfIsy0RG6EzfKMOOVRfkxUBuJ81mkUIaK-bye9HhRtC2tmReUuZWHnZ5hXK9Zp84j&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQF0a4qP7nvA8NmOIi9hQiVdkXbWlVqgKvKGwOcg-aPj2warFUm9RF_r6RSPLZqUxxAMsJdd_ScjgQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwzTXlYCKS4r4i4WLQghEJllBR1DvF3ZZ2s7fCyLIzpuA&oe=69C655D1", "link": ""}]}, {"id": "120210631193370020", "name": "Venda | [MENSAGEM] [WHATSAPP] [MISTO]", "objective": "OUTCOME_ENGAGEMENT", "ads": [{"id": "120244032176860020", "name": "AD75 - Reels calça", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwEeahwC&_nc_oc=AdohQBF1bvZvzj1eP5xlnCLG9z1xopSu-K__t8cQ6WulnYeO0LUX6p2MJufxoz7GA3iSUDZJxy0DBxEo_5IH1AyS&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQEk5Ck4_PoOouWkMQjeTY5WLPAemK0SnrZ6o4hZsuERkEAaYDer09xFDidyw2JtcbhI78fDuR7k_g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxPoxaU2l-ZgBRJYA6FnSnK_vR6CPXkIO7Z65gGj8G1AQ&oe=69C661C1", "link": ""}, {"id": "120244032176850020", "name": "AD74 - Reels Look lançamento", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=v-Iug6Bx0SQQ7kNvwH5263c&_nc_oc=AdpAamkRETZHDNhPYkr9eiELq4B84FRD4SdwLgHmKMKcjLmHJ5tffxVlciRkyfP0PLrmcjJgHfnZnJZzGUnStxZ8&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQFUF3RFUEsEhom9uw9wNlqJ1sqKwGpL4RKRxAqElXaAgkCSpaxRicVpHf97e1GCQ_m8e6gREQjWow&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyEnrVyqf2cXmNJoO3HJPceG1NqAGq4jKvnXF2MW1jIzA&oe=69C64C05", "link": ""}, {"id": "120244031845050020", "name": "AD74 - Reels Look lançamento", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/654475341_1425258299055988_6192319731193764764_n.jpg?_nc_cat=100&ccb=1-7&_nc_ohc=v-Iug6Bx0SQQ7kNvwH5263c&_nc_oc=AdpAamkRETZHDNhPYkr9eiELq4B84FRD4SdwLgHmKMKcjLmHJ5tffxVlciRkyfP0PLrmcjJgHfnZnJZzGUnStxZ8&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQFjNCVjjIsF3LREQ_doyYId-ZBMXqGVHr4VE9pNbUBd1HUbUFO5US1Clw21e8HRN8_fORxfXtpS9Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwMVekqD9VOKKDX37L9yqXxvk7FMuYEa2gEr86PqF-Xyg&oe=69C64C05", "link": ""}, {"id": "120244031942960020", "name": "AD75 - Reels calça", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=X8dRTgTur1kQ7kNvwEeahwC&_nc_oc=AdohQBF1bvZvzj1eP5xlnCLG9z1xopSu-K__t8cQ6WulnYeO0LUX6p2MJufxoz7GA3iSUDZJxy0DBxEo_5IH1AyS&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQFoIK0U26iuN5vgyE0mQ65e_8Nchk69wsnN3k_wO8FmxH2HYpArdnoMjYh3nfyxWcGRmD-SdUXUEA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwTROPanA9qVFKmm3Af5l6RlxRLJ4Mozn8toOthplH0JA&oe=69C661C1", "link": ""}, {"id": "120243842637150020", "name": "AD65 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwHUgWOu&_nc_oc=AdrX1SPtmPh1Q7svjTOu2ALuXZFD26DGpxfX5XjRWWgiGFr_bXgVGKBPlVWSj7X_vkeDQIJsGZgzQTOBQbJsD6K6&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQHmQSiKUVithVMRasJ4uw_AW_FJuNcXJ0eXxuI4_QjZYdNRSDatUsga2BfZRlAzOSscW_3Uw7X3yg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx-k9Ct5j0VceXdmWg_W4GmfWe7t3UkZ5W5do48q794RA&oe=69C652CF", "link": ""}, {"id": "120243842637130020", "name": "AD69 - Reels vestido", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHhi9bC&_nc_oc=AdqkbprPBPJj6s9pBrIkPSLxPz0kaGkIxx1p4XVYEg1-fBoSYNk15bwUimyW0SRoY1hB84dv23d_P811kmzVBVKl&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQHavPY_OOqjG4yt1i-XVR9lCxa_-Dl4pszE8ww7-ybx7iMtMyfAAx4FE4a5EAVeyIdWJKwz3lzYTw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx9Iq2HhaNTYVxV0ohfECzShtucEyFd8xjyZSRn7PuCFw&oe=69C649A1", "link": ""}, {"id": "120243842637140020", "name": "AD66 - Reels Brasil", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwGsxMs1&_nc_oc=Adqxddew4JSNWogyOaVQAo6DHmJtBKjstOMwZmtcmxXY_yoXrmXtbqcn_8h686jrC2-IFu-ZsIJ5WJrWXGEdp8L7&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQEW15EUKM50aeb7PpQgfGDGpcq_OAlHJiXcJrg9aHuke8Ovs3SmT5Tm9ks2KAqOSNh5NE0T_g-dyA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz5nIy6vYM8qCsIhvQOxNgJkH2c2Pa4eNe9RRGWKWPULQ&oe=69C66D46", "link": ""}, {"id": "120243842622040020", "name": "AD69 - Reels vestido", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=1Ah9tNLH0FQQ7kNvwHhi9bC&_nc_oc=AdqkbprPBPJj6s9pBrIkPSLxPz0kaGkIxx1p4XVYEg1-fBoSYNk15bwUimyW0SRoY1hB84dv23d_P811kmzVBVKl&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQFKdVCjh1CmWsHdTGs6lCI7lZO8GRnyaIbDZL6knB6y1Lwk7O-wM0tA6cnmB-UuEeKuy55Fe_xexg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyKv8dG-4fwY7TpoMToVjJrakh-YGeP3Ossz6fPs1Qhog&oe=69C649A1", "link": ""}, {"id": "120243842576490020", "name": "AD66 - Reels Brasil", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_ohc=o3ae4zvlNRcQ7kNvwGsxMs1&_nc_oc=Adqxddew4JSNWogyOaVQAo6DHmJtBKjstOMwZmtcmxXY_yoXrmXtbqcn_8h686jrC2-IFu-ZsIJ5WJrWXGEdp8L7&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQG3CnlrYS_GsRUpDt5_Op6tKlPIvbo0ae7EVXlHY3BNvdd77oFvQ8e6WsuW1mxcra8JY4gROnqNTg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzBIQxt2n3cn6MhHwSSLcg5hHA08Z3zYXpe9-6qQ-ohrA&oe=69C66D46", "link": ""}, {"id": "120243842499420020", "name": "AD65 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=ukJvP0e-w9kQ7kNvwHUgWOu&_nc_oc=AdrX1SPtmPh1Q7svjTOu2ALuXZFD26DGpxfX5XjRWWgiGFr_bXgVGKBPlVWSj7X_vkeDQIJsGZgzQTOBQbJsD6K6&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQH0G1dBDGDSbPv44dnn-V-gi4kKZgcNkDtjLdHAOiQosN-sbtJhm7hra5-T5BSBcos-QCJ-f7aQig&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxTbc2ddqkHDYtfHegbp1LTqIXa1yLMMxxZERrHnaXr0A&oe=69C652CF", "link": ""}, {"id": "120243842637120020", "name": "AD68 - Reels calça", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=smkIg62qG9cQ7kNvwGTfUTc&_nc_oc=AdqoVsQ_VDTAOeA6ousCNHDF4yXGVXzN4IAmp4sPzIXMlFILNczlvDW01bXFMQ2N02WtSwO69jwS8n6nTbHLduPM&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQEf15ja1sHmjWtPWtGPsmUn-XS3RNTJoQr52x-YO4n09V5_xkrNTMtWlP9C5is6UvLhiCsHUkNeDQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxrCDtbiTXq2TARrENuv6ZODdF6tYsxE4pxD_TTI2X0sQ&oe=69C65D95", "link": ""}, {"id": "120243842593150020", "name": "AD67 - Reels biquini", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwE6hsGq&_nc_oc=AdopseogTIyGSVHwiwqFdWzhWnEjWKyz7Hp49_A_a7Un_MhextyVJKoec9p51uilMYY0qZXF06v9qMvZ8qmIALTb&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQE4K0LcYiIaQT3Lu9JODU96Ou9VBxLX5TBwNgGt2L1rnwk5CyVvY4QkrLTibrw-pcDY3rAHAEYrHQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afy3wi9dLpaTDLcm4CC0LbvdW8CSWpaLO0waNevvbltEgA&oe=69C63D6E", "link": ""}, {"id": "120243842604700020", "name": "AD68 - Reels calça", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649753991_2120728108684254_4347984512722783577_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=smkIg62qG9cQ7kNvwGTfUTc&_nc_oc=AdqoVsQ_VDTAOeA6ousCNHDF4yXGVXzN4IAmp4sPzIXMlFILNczlvDW01bXFMQ2N02WtSwO69jwS8n6nTbHLduPM&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQEaAoqTPCgQ5MRzEIka03E463js7xxWi3A0-X0th8l3k5FC5BTh1ouLeTpct-m1qZRcsUm8uV44Jg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxxnCbJqZCMgAdbpf8MhnL3c8Gae1i5T_b0QibWvbWnWA&oe=69C65D95", "link": ""}, {"id": "120243842637160020", "name": "AD67 - Reels biquini", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=ICwx2eY44IkQ7kNvwE6hsGq&_nc_oc=AdopseogTIyGSVHwiwqFdWzhWnEjWKyz7Hp49_A_a7Un_MhextyVJKoec9p51uilMYY0qZXF06v9qMvZ8qmIALTb&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQGjJeEuX2oGCj0D6qa0Wo8huchnv_8V_E3tVOIRN_zsqKV8OKG3nQ9ZulBE5ko7rqvdi_jwMCcrFg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxHzWDfDwDCNm8PicBsiiBj8KtnqV9rvdFEm_FqQJd6cA&oe=69C63D6E", "link": ""}, {"id": "120243364776810020", "name": "AD72 - Reels Aero Look", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwHTw0gH&_nc_oc=Adq6aMUVeCDJ__08e10gUlHEp5zdG4ojqdEAMPG2TufmE_aJhXQ1k2kjDpnQfLv7zXvKdm06veAoBtI54lUOCf9n&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQFDaHQD3BAy-O_Cr7IZPu3o3G6rGiMkqqK7QmrKgxP6lwmJBEbL7qpAOd-ZcOc-DqedauStxa2UWg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afwv8Ka8F8mSabh7aP28lp6QabBmCH4P82tOMmbeR9ggrA&oe=69C66708", "link": ""}, {"id": "120243363963600020", "name": "AD72 - Reels Aero Look", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=qNgloHGhkx0Q7kNvwHTw0gH&_nc_oc=Adq6aMUVeCDJ__08e10gUlHEp5zdG4ojqdEAMPG2TufmE_aJhXQ1k2kjDpnQfLv7zXvKdm06veAoBtI54lUOCf9n&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQHlqli91H0-kTWMVrxWw69SZczTPA97eCqUdhcSEAUaPxiTRH6iNyet7NCm91K3vwftgtvx6EHkCA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxAsDEDcx6TSFNXMh0YobbtoTnWKNZ-urnA2ty3q-9E1Q&oe=69C66708", "link": ""}, {"id": "120243364767360020", "name": "AD73 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFvIk81&_nc_oc=AdqsQG97GmwAJXbpUDgt3HuUo7pXHyhWNvVr0VzOpCk7YUkR9MYKLllq3uRg4YRWntym908BVND2Ut6W7p0U60HN&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQHbWSyW6HIhfW0x_ALhtSuORjNjBkgaLwTEhxfTDBT2C2d2BqZ1f_0xLEqwl9XoB_qCmpT9iqenrg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwYH8hsb_JMOQhM69fT3ey-ciZBIvJ9Wn1ywTqTXVOLLQ&oe=69C6605E", "link": ""}, {"id": "120243364776800020", "name": "AD73 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=gm7rQizrBg0Q7kNvwFvIk81&_nc_oc=AdqsQG97GmwAJXbpUDgt3HuUo7pXHyhWNvVr0VzOpCk7YUkR9MYKLllq3uRg4YRWntym908BVND2Ut6W7p0U60HN&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQGwnJKCLitcswe-XTaEDeevO-1XNsqCLUg7tFFQS_XsWaKmhC_bp6vfEa_IHWbD7tmDnbCbfsq4kA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afwl8RYTFZG5tiNkmlcj3cuUfrv0ULYvx8E-kxj1EA3cYQ&oe=69C6605E", "link": ""}, {"id": "120235688031640020", "name": "AD14 - Reels blusa em crepe", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.13418-10/566566632_716581460696588_3649711858675149011_n.jpg?_nc_cat=104&ccb=1-7&_nc_ohc=sbCUVrtDycsQ7kNvwGN8krZ&_nc_oc=AdqtvJ_mGQMlKxVSJ3Z8fot5iDrt-4P0sP0dwX5t2bjt4zEFkOva5Adb4dDKnmPKa5dtRJsBfofAhVtQtY09Nr-4&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQHnpLXUKx-0jBE72jc6uGdv52IWurKhNOiiNMUJ-IZICUf767H3fGNRZ85PjjW6qDw6oN2iG1YLow&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfxyzqtjTtqjrp1cesALVQ1sn5r5mVnpbrFRamI5YG_TAg&oe=69C63B77", "link": ""}, {"id": "120235688031690020", "name": "AD13 - Reels macacão patricia", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/561618054_1169833555010573_1429729776748049899_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=VI2lFV8cM6wQ7kNvwEvVfrg&_nc_oc=Adpl73OJkJEnir3Ko_8NIeYWlPWHiq2iTUSctP1KFS9ZXW7iJcpq9IFJcQMWO8BKHGVd8OTOXCDffYBPiAeln84N&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQG0zBbJ7rQu3k2ArKsbMrTR775Q9jojal9ou5Vfd2zYdSuzsQoEa0ZhmcCjAnIoUdfV_VoXHh7JuA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afw-ZZypGyFFinaOQE3SyF4uhcNweXUApdpAHMkg8LO2lQ&oe=69C663C2", "link": ""}]}, {"id": "120233662651250020", "name": "Relacionamento | [VIDEOVIEW] [FRIO] [LOCALIZAÇÃO]", "objective": "OUTCOME_ENGAGEMENT", "ads": [{"id": "120243162966410020", "name": "AD07 - Reels localização", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637882998_2007366930160828_319968532192488573_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=BPigt9NmiQwQ7kNvwEWJ8WM&_nc_oc=Ado3ZU72QkB7PEA-TD8GJcuZCeHKeaIccTjo7HEyg9ZRg_6zYVXGdi4rXz-pgC-YMjs2Snk5MtwIaz8-7KZGDSEF&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQHvJ38X8XCzKnzaqFV46XciEjKvJNnRDkwP9KUHCPHqtfdSyPCq92btYJ9RS8PRfe_vtrtTsE8NyQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afxsq3wc3Zf8oYkNdNSa6uYNoOJptd-S_ihlnnTwx8Sb-w&oe=69C6480F", "link": ""}]}, {"id": "120239772449420020", "name": "Post do Instagram: Medidas reais. Corpo real....", "objective": "LINK_CLICKS", "ads": [{"id": "120239772454940020", "name": "Post do Instagram: Medidas reais. Corpo real....", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/596018549_1857536081821570_8205758525858578859_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=dCkU_259WoEQ7kNvwGud0ew&_nc_oc=Adp1K5toiYFs3UR1TJ7NOYYDC3BmJ2o2qJbVFbscrRbjog6ECcrmRpbWYRID09E4RQdkDngTSEsAAFnnIFi5RBqt&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQEEIi6SsOq6OShlo5q2-wsHvpBduee2edpHGy7SrdZUGy16IYXOvzK22jZ-ldBn1RRQa7rwSN0eTg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxQ61KRCB1zY54kipohaPOGEO9gdjeUC49Or-2GBlkV1w&oe=69C66CBF", "link": ""}]}, {"id": "120236451447560020", "name": "Post do Instagram: ✨ conjunto em malha crepe por...", "objective": "LINK_CLICKS", "ads": [{"id": "120236451449340020", "name": "Post do Instagram: ✨ conjunto em malha crepe por...", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/568721245_2278444489243145_5377558617145848829_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EHTLsxkfkc8Q7kNvwEiooft&_nc_oc=AdpT7F462r-pyRz0TDamu9bDAepCZE8IMhgXQ6_rQ-DkmxKGUjc5HFRZhhOa-n667qH8RVe0Ea9sXuozdUqbpMlH&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQGf6eOvG6oZliNitElRRlzbntpDdrG92RG9GTh04Dz-TMZlezIWYYBzdqRMcN9sscVHs8akVbEewQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxT9_iB58NurInL4ZKkKJTLd4bqsuFzuwp_SgDWPZv-Pg&oe=69C6572F", "link": ""}]}, {"id": "120236056121050020", "name": "Post do Instagram: “Quem melhor pra falar da...", "objective": "LINK_CLICKS", "ads": [{"id": "120236056122810020", "name": "Post do Instagram: “Quem melhor pra falar da...", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/563383688_683493447674015_677251340666898760_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=EdZKjhIRaR8Q7kNvwHAef0o&_nc_oc=AdpONHaQU3cva2AEf3uUkCk4JeSd1Bz7dw_COz4-snNO3ayT938GmQQdKOB9a6Pgu6FZP9J0t6kWboAccWep8z76&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQFNVcX8ptnaiepZCTI3eBAUw_SXdg19mLQ3mYPd_ShuFsCrC5i8RsgsNiAg1ScGtLO7R-6BEKrLzg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxPgt1vL8AZCkoVFo8-Z-mWMRUBXZZFNP9mFy6bOO5Q5w&oe=69C64EF8", "link": ""}]}, {"id": "120234896434360020", "name": "Post do Instagram: O #sambarecife está chegando...", "objective": "LINK_CLICKS", "ads": [{"id": "120234896438290020", "name": "Post do Instagram: O #sambarecife está chegando...", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/553489208_765682722900608_3536675434902768250_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=R4qMrh-2628Q7kNvwF17D9T&_nc_oc=AdqZJGRBIkkuq82jMAwpv8NkUPN0dGvE8ELYvnfmS1EL7I1iheZmcFKxFvDZSR1gifNiRFFzhqim_Z2VVL_4WQjd&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=K1AXpthq8lsp9OHPqAxP1w&_nc_tpa=Q5bMBQHueu6F37sfSiJ5mrgswS9OQBOJtiXlluOoAMr9uzvK18vj2LhIsKSHqxzuiTvU70M9ThdYO-F7SQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfwtAuS0UfJ2OwpDWrKUWG6-OHDr1hsm_It0fguujQiuAA&oe=69C66427", "link": ""}]}];
+const ICONS = ['🎯','📣','🔥','⚡','💡','🚀','🎪'];
+const OBJ = {
+  'LINK_CLICKS':'Cliques no link','OUTCOME_TRAFFIC':'Tráfego',
+  'OUTCOME_AWARENESS':'Alcance','OUTCOME_ENGAGEMENT':'Engajamento',
+  'OUTCOME_LEADS':'Leads','OUTCOME_SALES':'Vendas'
+};
+
+CAMPS.forEach((camp, idx) => {
+  const obj  = OBJ[camp.objective] || camp.objective;
+  const icon = ICONS[idx % ICONS.length];
+  const adsHTML = camp.ads.length === 0
+    ? '<div style="padding:24px;text-align:center;color:#888899">🖼️ Nenhum criativo</div>'
+    : camp.ads.map(ad => `
+        <div class="ad-card">
+          <div class="ad-thumb">
+            ${ad.image_url
+              ? `<img src="${ad.image_url}" alt="${ad.name}" onerror="this.parentNode.innerHTML='<div class=\'ad-thumb-placeholder\'>🖼️</div>'">`
+              : '<div class="ad-thumb-placeholder">🖼️</div>'
+            }
+          </div>
+          <div class="ad-info">
+            <div class="ad-name">${ad.name}</div>
+          </div>
+          ${ad.link
+            ? `<a class="btn-ver" href="${ad.link}" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                Ver no Facebook
+              </a>`
+            : ''
+          }
+        </div>`).join('');
+
+  const el = document.createElement('div');
+  el.className = 'campaign-card';
+  el.innerHTML = `
+    <div class="campaign-header" onclick="toggle(${idx})">
+      <div class="campaign-icon">${icon}</div>
+      <div class="campaign-info">
+        <div class="campaign-name">${camp.name}</div>
+        <div class="campaign-meta">
+          <span class="badge badge-active">Ativo</span>
+          <span class="badge-obj">${obj}</span>
+        </div>
+      </div>
+      <div class="campaign-count">${camp.ads.length} criativo${camp.ads.length !== 1 ? 's' : ''}</div>
+      <div class="campaign-arrow" id="arrow-${idx}">⌄</div>
+    </div>
+    <div class="campaign-body" id="body-${idx}">
+      <div class="ads-label">Criativos ativos</div>
+      <div class="ads-grid">${adsHTML}</div>
+    </div>`;
+  document.getElementById('container').appendChild(el);
+});
+
+function toggle(idx) {
+  document.getElementById('body-' + idx).classList.toggle('open');
+  document.getElementById('arrow-' + idx).classList.toggle('open');
+}
+</script>
 </body>
 </html>
