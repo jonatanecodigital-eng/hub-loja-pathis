@@ -14,13 +14,11 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-
   .header {
     background: linear-gradient(135deg, #0c0c0e 0%, #141428 100%);
     border-bottom: 1px solid var(--border);
-    padding: 20px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 100;
+    padding: 20px 32px; display: flex; align-items: center;
+    justify-content: space-between; position: sticky; top: 0; z-index: 100;
   }
   .logo {
     font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
@@ -30,13 +28,12 @@
   .client-name { font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; margin-top: 4px; }
   .header-stats { display: flex; gap: 16px; align-items: center; }
   .stat-pill {
-    display: flex; align-items: center; gap: 8px;
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 100px; padding: 6px 14px; font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; gap: 8px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 100px;
+    padding: 6px 14px; font-size: 12px; font-weight: 500;
   }
   .stat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); }
   .updated { font-size: 11px; color: var(--text-muted); }
-
   .main { max-width: 1400px; margin: 0 auto; padding: 32px 24px; }
   .section-title {
     font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
@@ -44,17 +41,14 @@
     margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
   }
   .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
   .campaign-card {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 16px; margin-bottom: 16px; overflow: hidden;
-    transition: border-color 0.2s;
+    border-radius: 16px; margin-bottom: 16px; overflow: hidden; transition: border-color 0.2s;
   }
   .campaign-card:hover { border-color: #3a3a4a; }
   .campaign-header {
-    display: flex; align-items: center; gap: 16px;
-    padding: 20px 24px; cursor: pointer; user-select: none;
-    transition: background 0.15s;
+    display: flex; align-items: center; gap: 16px; padding: 20px 24px;
+    cursor: pointer; user-select: none; transition: background 0.15s;
   }
   .campaign-header:hover { background: rgba(108,99,255,0.04); }
   .campaign-icon {
@@ -77,18 +71,14 @@
   .campaign-count { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
   .campaign-arrow { color: var(--text-muted); transition: transform 0.3s; font-size: 18px; flex-shrink: 0; }
   .campaign-arrow.open { transform: rotate(180deg); }
-
   .campaign-body { display: none; border-top: 1px solid var(--border); padding: 24px; }
   .campaign-body.open { display: block; animation: fadeIn 0.2s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
-
   .ads-label {
     font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 14px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
   }
   .ads-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
-
   .ad-card {
     background: var(--card-bg); border: 1px solid var(--border);
     border-radius: 12px; overflow: hidden;
@@ -96,25 +86,50 @@
     display: flex; flex-direction: column;
   }
   .ad-card:hover { transform: translateY(-2px); border-color: #3a3a50; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
-  .ad-thumb { position: relative; width: 100%; aspect-ratio: 1/1; background: var(--surface2); overflow: hidden; }
-  .ad-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+  .ad-thumb {
+    position: relative; width: 100%; aspect-ratio: 1/1;
+    background: var(--surface2); overflow: hidden; cursor: pointer;
+  }
+  .ad-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block; transition: transform 0.3s;
+  }
   .ad-card:hover .ad-thumb img { transform: scale(1.04); }
-  .ad-thumb-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 28px; }
+  .ad-thumb-placeholder {
+    width: 100%; height: 100%; display: flex;
+    align-items: center; justify-content: center;
+    color: var(--text-muted); font-size: 28px;
+  }
+  .play-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.25); transition: background 0.2s;
+  }
+  .ad-thumb:hover .play-overlay { background: rgba(108,99,255,0.35); }
+  .play-circle {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(0,0,0,0.6); border: 2px solid rgba(255,255,255,0.8);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s;
+  }
+  .ad-thumb:hover .play-circle { transform: scale(1.1); }
+  .play-circle svg { width: 20px; height: 20px; fill: #fff; margin-left: 3px; }
   .ad-info { padding: 10px 12px 8px; flex: 1; }
   .ad-name {
-    font-size: 11px; font-weight: 500; color: var(--text); line-height: 1.4; margin-bottom: 6px;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    font-size: 11px; font-weight: 500; color: var(--text);
+    line-height: 1.4; margin-bottom: 6px;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
   }
   .btn-ver {
     display: flex; align-items: center; justify-content: center; gap: 6px;
     margin: 0 12px 12px; padding: 7px 10px;
     background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.3);
     border-radius: 8px; color: #a78bfa; font-size: 10px; font-weight: 700;
-    text-decoration: none; transition: all 0.2s ease;
+    text-decoration: none; transition: all 0.2s ease; letter-spacing: 0.3px;
   }
   .btn-ver:hover { background: rgba(108,99,255,0.25); }
   .btn-ver svg { width: 12px; height: 12px; fill: #a78bfa; flex-shrink: 0; }
-
   .footer {
     text-align: center; padding: 32px; color: var(--text-muted);
     font-size: 12px; border-top: 1px solid var(--border); margin-top: 48px;
@@ -136,7 +151,7 @@
   <div class="header-stats">
     <div class="stat-pill"><span class="stat-dot"></span> 3 campanhas ativas</div>
     <div class="stat-pill"><span style="width:6px;height:6px;border-radius:50%;background:#6c63ff;box-shadow:0 0 6px #6c63ff;display:inline-block"></span> 19 criativos ativos</div>
-    <div class="updated">Atualizado: 27/03/2026 às 23:00</div>
+    <div class="updated">Atualizado: 27/03/2026 às 23:08</div>
   </div>
 </div>
 
@@ -145,10 +160,10 @@
   <div id="container"></div>
 </div>
 
-<div class="footer">EcoHub · Loja Pathis · Atualizado automaticamente a cada 15 minutos · 27/03/2026 às 23:00</div>
+<div class="footer">EcoHub · Loja Pathis · Atualizado automaticamente a cada 15 minutos · 27/03/2026 às 23:08</div>
 
 <script>
-const CAMPS = [{"id": "120210631193370020", "name": "Venda | [MENSAGEM] [WHATSAPP] [MISTO]", "objective": "OUTCOME_ENGAGEMENT", "ads": [{"id": "120244662920220020", "name": "AD77 - Reels vestido canelado", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/656035815_2440994099656557_7221633187282674716_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeFTVLURPck6CLZ3iD40s86Sff2Vy7dPoSV9_ZXLt0-hJbSeuvFMs8QLDETj9zj55A3FnDaAXoA-VdnpdjXBi9BT&_nc_ohc=4popT2hW0_cQ7kNvwGF8NCs&_nc_oc=AdrEIflNxw4Qtd0Wel4LcdtH0yAhrI3XffnZxzBI3eE0lvfJL5OIPGzditu89R1EPe-1Iz3KSWNwQ0IfRDwvFrER&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQHEd0I3ErlM6tHKE2J_tXRcwewHO5eqCMmBJLSEZorv1sFVPRxkxCXMisrxViZPXP2pUWBINTzw3g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzO2gRj3djMaa3JZVZ_ofBO99-bPWjPjHlEwgWVwmH-qg&oe=69CD05A1", "link": ""}, {"id": "120244662828960020", "name": "AD76 - Reels Conjunto Plus", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/661431410_806677275826924_8586280280235332323_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeEH-lLLY59yywa9HerCfSm3pvIe8aNkGiOm8h7xo2QaI4eHwca4qUnfAA_b9H493wRRYd6FEYcqr5jk1QU5ouew&_nc_ohc=EA8RWixNx8oQ7kNvwGpPw1X&_nc_oc=Adr3XxMausQMHmxpWOJjBM96Og8waTKSCGSgUP_C8QUDYG9Zq_ZHpqw2jvxSg0vTwCAYpP4IDy4rDnDC0exn83-v&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQGVTI_aXMJ6E3sVFq6yfIt365QFUPbRiO0txfai4_D_Px37hdYCsXu3q5ZubRVhYGmsYX4nRViW6Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwVqxKgSfHGRnwfyyXK4XlzEuh0tYLcwj-AInHIJqPjTA&oe=69CD218E", "link": ""}, {"id": "120244662969590020", "name": "AD76 - Reels Conjunto Plus", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/661431410_806677275826924_8586280280235332323_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeEH-lLLY59yywa9HerCfSm3pvIe8aNkGiOm8h7xo2QaI4eHwca4qUnfAA_b9H493wRRYd6FEYcqr5jk1QU5ouew&_nc_ohc=EA8RWixNx8oQ7kNvwGpPw1X&_nc_oc=Adr3XxMausQMHmxpWOJjBM96Og8waTKSCGSgUP_C8QUDYG9Zq_ZHpqw2jvxSg0vTwCAYpP4IDy4rDnDC0exn83-v&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQENrZZXKdziJXHmBdvWQPPT1QeSAHsLDZfzkdriPjJBFeTP9LLyz5ucQLMRMN8zXbvIctr8M1EfHw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz4P6drCVWYrNACTHhIM8IRcW86e3fRvgXGWgIehd6k9g&oe=69CD218E", "link": ""}, {"id": "120244662969570020", "name": "AD77 - Reels vestido canelado", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/656035815_2440994099656557_7221633187282674716_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeFTVLURPck6CLZ3iD40s86Sff2Vy7dPoSV9_ZXLt0-hJbSeuvFMs8QLDETj9zj55A3FnDaAXoA-VdnpdjXBi9BT&_nc_ohc=4popT2hW0_cQ7kNvwGF8NCs&_nc_oc=AdrEIflNxw4Qtd0Wel4LcdtH0yAhrI3XffnZxzBI3eE0lvfJL5OIPGzditu89R1EPe-1Iz3KSWNwQ0IfRDwvFrER&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQEUfIuD30c23Tr-g7JdmKLYToYqAyJMdB55wnYRTZAZaOMeoVlrE3JF2usG_sDpSSY3g93NtnHOWg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxWblKeBapnWnDPjnDDwJvjfkhwT44FPmCvOu9wn8oSig&oe=69CD05A1", "link": ""}, {"id": "120244662956930020", "name": "AD78 - Reels moda praia", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/658331868_918558234477707_6001749723922100840_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeE2spnHV9VWUm1ifhF_mlJXxsX43Fyya5jGxfjcXLJrmOE8W44KsslnTmPSzqvbo1-50VzvmvS68OOTR5UwO6Fm&_nc_ohc=ZYDJEx6gjtMQ7kNvwEnHS3v&_nc_oc=AdpJHQSaTh9ZS8yo5fpLwCShEdqSBn2l-NRyf2ACMFnEcnEzmhRDsPG6ElNOJGIg0gvFh-P_0bPa-h5MuC_oxQaR&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQF1sDVPOs1LENv_xQwkECjNHVg7GcXIWIKEsLDbxeL9Lx_ZvArelub1QpjtC_J_THb6Bkix4DKs0Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzLeBBOdPzlSXzplOFKSiIJohfqKzkj4QyntRSG0S2xAQ&oe=69CD074D", "link": ""}, {"id": "120244662969580020", "name": "AD78 - Reels moda praia", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/658331868_918558234477707_6001749723922100840_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeE2spnHV9VWUm1ifhF_mlJXxsX43Fyya5jGxfjcXLJrmOE8W44KsslnTmPSzqvbo1-50VzvmvS68OOTR5UwO6Fm&_nc_ohc=ZYDJEx6gjtMQ7kNvwEnHS3v&_nc_oc=AdpJHQSaTh9ZS8yo5fpLwCShEdqSBn2l-NRyf2ACMFnEcnEzmhRDsPG6ElNOJGIg0gvFh-P_0bPa-h5MuC_oxQaR&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQGxtQ-LsZZM7fGXg_ZeoL_iSbVQiGc-gYA8y-03gRI-D7o5tmT5XYtfxemUo4jwVZDaHCPRA9RPRg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxOMbc8a_dJnzDq6PE2u4NLtcUNNIIQuz7sZXoK5Pq4eA&oe=69CD074D", "link": ""}, {"id": "120244032176860020", "name": "AD75 - Reels calça", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeHoGG_EnkN80ImKPa7-e0Z_7Oaz2lDN5A3s5rPaUM3kDX1xfAHxMWA-DPJzgN-UZO6Xbfb0gC5lNP1KvZLE8qt7&_nc_ohc=YoXO5eMacAIQ7kNvwHvswHj&_nc_oc=Adq5hF2FWE-gINKvl4TIp0qu369CO1CPWoj1G8kJjok85W4ocToAM5C0vbX-AE5pkC-dKCjrJ93-Nxb__LNcvaea&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQEtsNIBokUwmGFq6qH9qVgOTYdfd1ER5RzAtyKaV19EeOjkKzvPuY_YhH03SgJCf6kdR-z9YfUXYw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwqgEwMhKtmhyUjGIyWDtNrcqnbvbQFAKWTAStFO-6NYw&oe=69CCF941", "link": ""}, {"id": "120243842637150020", "name": "AD65 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeHRxMAdKnNsF7L6xftsEM2SpCC151FAmN-kILXnUUCY3x1-iFDMzvG5MVLT6u5PIZYWv4qOFlNL8d5O805xc1W4&_nc_ohc=c0jBDPmQ32YQ7kNvwGItD7u&_nc_oc=Adry-Q2FIj54NftV9G4RC1y3i2AWNKtYKqWP3wgfZEVFYihekkqXxzleil2Q_jxg0GzKv_ou8CI_xYKAYtmJ3mAI&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQFCseemLVIk4M8WbB9oDQlYZSRh0yhS9xADxDFCwcl0FnwKDSbSl2hm9_DzxZjzo_SKpWWukOsQtw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afw4xvMOTD3lJ3pbCm3GX22qPax0M8_2Levte0L9VRY7FA&oe=69CD228F", "link": ""}, {"id": "120243842622040020", "name": "AD69 - Reels vestido", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeH2pJ6rWE2hU5GRiQvhVAFWggS2R2PupXyCBLZHY-6lfEbfmCaFIcuXOtYQf4fsY1H6MEV6BGWRclH52hVoy68H&_nc_ohc=V6v9VWzne2UQ7kNvwH25hd1&_nc_oc=AdpN2fUDcZul-F1Mj4NotmGZjxqCIg1eHeKOqOTP6UM4bufhW56OYxzeIy05mILftxwuvG7inK0yb4ddYEsDyawf&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQEy7hCRyAbrnZk47jV7gtb5R5AFrgSWAHWT343rS-vAyQjl3K9tmzizKDTiFUOGARmmmVyZ535o8A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwBuXPTBPV1XHreOJUgKfcdpBi2o-QYBSqE_HzMMwK1dQ&oe=69CD1961", "link": ""}, {"id": "120243842576490020", "name": "AD66 - Reels Brasil", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeE_IT6JoJREdU4dY2UYbPDpGeX9UNeUBtwZ5f1Q15QG3Lc3DDx6gaiKtnq7hVBo34uWs5Zl4jqka8YZI808pPpt&_nc_ohc=-Zg2CGiNkQMQ7kNvwHzVMVi&_nc_oc=AdpsKHnQ7-KcxFtAqd1r8Y2vwxlqnjUlCCbBdJ3hPrENr0TIyAA9HJrj3SxGiL0f6i-lgwqxZuPV36Q9rg5TMcnk&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQG2VwFcI4dyaGFcmdL7wmgrCMD8KrER1Q3xXPvCzVFNRf5G7Pf-WNGoXotQNjSbnMg7mRo40I7_wg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzCGOMuiaV1kRyozsf1BKi4TTWj1lNjl7cYE5fcQHpIfw&oe=69CD04C6", "link": ""}, {"id": "120243842499420020", "name": "AD65 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeHRxMAdKnNsF7L6xftsEM2SpCC151FAmN-kILXnUUCY3x1-iFDMzvG5MVLT6u5PIZYWv4qOFlNL8d5O805xc1W4&_nc_ohc=c0jBDPmQ32YQ7kNvwGItD7u&_nc_oc=Adry-Q2FIj54NftV9G4RC1y3i2AWNKtYKqWP3wgfZEVFYihekkqXxzleil2Q_jxg0GzKv_ou8CI_xYKAYtmJ3mAI&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQHQ6KRz3wupFRFPcI2_iMaSGCZu4gKXZH2IclNN48R4XrmWDXgP8h1vRK7ELLFtirFvdvo4acAfsw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwJVVnFCCUq7FYT5YI28sd5XGTZ6gmewuo5QWu3qpTrJg&oe=69CD228F", "link": ""}, {"id": "120243842593150020", "name": "AD67 - Reels biquini", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeE7WDelTjaVdpyHsLQIjdPWN_E8MXYeG2U38Twxdh4bZS_emfqtEHcOCmdxGbVfzqq4GKTu-QdySEUDSvzpuC5y&_nc_ohc=4OWIYk7FgCMQ7kNvwEaWtBS&_nc_oc=AdqoLXq71cdxVv8IiHX66TtInqXxAQMxoXV59lUEyHcrlFIxsFSRflQnlbysoc6E9h3fw5mwJyVDrA05ikuVX23q&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQHBUR1Gdr8p94eANEpZuQJziwcpbeNsEx9XlzbWxM_59Zwv8xyeJzcutPr0KmQ_5itzPwpLbEGd-A&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxntGKXUgkjEMBNDrxHpg_j5Ar0QPPHQaU-WoH9w3M30g&oe=69CD0D2E", "link": ""}, {"id": "120243842637160020", "name": "AD67 - Reels biquini", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeE7WDelTjaVdpyHsLQIjdPWN_E8MXYeG2U38Twxdh4bZS_emfqtEHcOCmdxGbVfzqq4GKTu-QdySEUDSvzpuC5y&_nc_ohc=4OWIYk7FgCMQ7kNvwEaWtBS&_nc_oc=AdqoLXq71cdxVv8IiHX66TtInqXxAQMxoXV59lUEyHcrlFIxsFSRflQnlbysoc6E9h3fw5mwJyVDrA05ikuVX23q&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQG1v101btd1PH86U4uGNTHZTkH7157QviwDzSqo5KtC1eU6SvoIyfLI3H586_0UgH33SBQWRnxNfg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afyv6pLCs6WjdBWr9jZS9JH-_VNbyBhnxwQmVAAx7LRe-Q&oe=69CD0D2E", "link": ""}, {"id": "120243363963600020", "name": "AD72 - Reels Aero Look", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeFoCdOjsYQPAVHaPI0E-sb7ltHQvAMheqqW0dC8AyF6qkJS937roH3cMk_IuLBa3y67QbI9PmnVpPNoNHAcgrGR&_nc_ohc=AN6hV9sxFEcQ7kNvwGSDitG&_nc_oc=Adofz04bLeDj20mg3Lm6UM-Fn3qfD6k6NYPluxeEts2HT4ZHfriPPpFgJxHoPlTPUkFZZAADPOPfCO0mBfRasqmQ&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQFS7Z7n6VrbB-UdQnGvgxs_muykUjvCUuRcXl3zS96gEhFF6UzFdWt6HhV8cOQtfNPLyu3Vid3o-g&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzjZgmQjAH1ZKGQdl8CJyu5pTT6HHr9EAHmEShVuITfDA&oe=69CCFE88", "link": ""}, {"id": "120243364767360020", "name": "AD73 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeE2-L_E00w8ZKt691nRdv5jKkN0itrV5VAqQ3SK2tXlULPlqy-mJnQndi0Q9HCi8FKLxd00L8t4EmKoRkcl0bi1&_nc_ohc=FrCzeM1ngJUQ7kNvwHs9R_5&_nc_oc=AdoNbBwGq6Wyu039qF8atMtVE9eLAlzuVrBGafFkiYbOWmi-5AeQpPSWdkjcS5HV2pK9xDkt7VWWE6_yPUk0XJli&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQHvSTPQBICgUDEgbh7GNpDU1GQe6lrw1Hmi5C36CFKy-YAJwGPqnsSQ4xE0ZGRMSoaqDb-NiscSQg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx4zCLSLc-FgtTgoeWZX2zYKHjWBCsAGysNBCFfK3z2Dw&oe=69CCF7DE", "link": ""}, {"id": "120235688031640020", "name": "AD14 - Reels blusa em crepe", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.13418-10/566566632_716581460696588_3649711858675149011_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeEqqyIZJcafxon3xlRf-dYNjtLU0TgUPniO0tTROBQ-eAqyfeJtlEfMB-5J4ZoUesvNo75usMgV81nrjqKSJqhp&_nc_ohc=UNqe_3rcq0EQ7kNvwH1ZRaQ&_nc_oc=AdoLoln2Rn9GuQ-T0mVPSqTUrFe7ivKTPgwQ_m_uTcW5vXgECc5z_YbTfHGUeBTT45675rSRe0YUdMbN0Tq78rR7&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQGBXBth-YDL3ctm4XBB2IhRgXFvmeSM8SELJFTKH-8KOOxcbewB9CL29afeiHaxmTAyl-QsCcin4Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfxKcNasrnfwIXM0o_42XAQSu1GShESdjqqAHuMnKGNHJw&oe=69CD0B37", "link": ""}, {"id": "120235688031690020", "name": "AD13 - Reels macacão patricia", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/561618054_1169833555010573_1429729776748049899_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeGzRHDubr1A2sDT9malVsuRg8nAfY9wuguDycB9j3C6C7fgUfWzvoE9jbrZTyOol7mR1oSxg9zoFKcbMElQTEKS&_nc_ohc=6G5XN-nFDVYQ7kNvwGYWGTg&_nc_oc=AdpyKzB-ikdsSaCF0io_GouXgSYx6KdPFes0jUUgec3SHREWff7Ve9DKF1qvCclBzQlWfxDUbwCYknpTZ2lHHHWm&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQEV0IqBstZBFGOOLF10e5Ga5Y8ADldHvR4pDPXE3jrg_RzPR77D8bc7aiSD_lylUZJsGmks5nAFVg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfzPTdiOp2NaAIptX41FJdhbRZyU6OuZ7U6AMuyYyxL52g&oe=69CCFB42", "link": ""}]}, {"id": "120236234071130020", "name": "Captação | [LEAD] [QUENTE] [ 4º GRUPO VIP]", "objective": "OUTCOME_LEADS", "ads": [{"id": "120242234861820020", "name": "AD03 - Reels grupo vip", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/626154347_929943102814974_4907290852568821446_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeH5Mp-E-J8eusXU_ZSUxutwuonwyr6E9EG6ifDKvoT0QSt6NwysHc5JIHccb2j1iqoQ4uVnfmcg6JucL0B1IoIC&_nc_ohc=61L9ixA6jCIQ7kNvwHLxk2E&_nc_oc=Adpl3nnrVYBiOc912_uV67wPSqXkOfNuLyZ1cBS6k6qZgQuelbJOrFTCaNT_oc_h0ipLBQI299rW68nYWzgD67Jj&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQFM3adAT3lwFsiYdT2kyg6zDJI93uByrjSfM6SRP_qkJChXmBsEHSUXT4Za-gtrU0HiVxJOu8iLjQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzyvuEMkv9ZwhJsFhRv9wNWaMsQWz4L7gSSgwaSwexqGg&oe=69CCED51", "link": ""}]}, {"id": "120233662651250020", "name": "Relacionamento | [VIDEOVIEW] [FRIO] [LOCALIZAÇÃO]", "objective": "OUTCOME_ENGAGEMENT", "ads": [{"id": "120243162966410020", "name": "AD07 - Reels localização", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637882998_2007366930160828_319968532192488573_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeHM5DCQFY_jXVb1K-Wgyt28b73_dLf_Jw5vvf90t_8nDhXJ-JZzZH9EGJo9yCpmj3zWE1nRcUrGVgIgJ642govb&_nc_ohc=Ch1wmQcOO2IQ7kNvwGxyB2a&_nc_oc=AdpPleKfRYLfrCBTnjzsURTmbxTp0skny_xBFJHli5W3am1HYunUnr1R6Tb1b0GVos-rRc254QAXOfXT6jlmFxFL&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=fD8qCVa_kQLCjskEv-YSBQ&_nc_tpa=Q5bMBQFgpjYhC8vx7iINV_qJoz8NcHIEQxJ3BKs6BUthO_RQVV8vcNtXLPzaYOE3ZpkDK7wtbQRYlR3EAQ&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_Afw2mVcmwuPG0QBM71MokqrmkSHUcutnvoQ16UpntkpMTw&oe=69CD17CF", "link": ""}]}];
+const CAMPS = [{"id": "120210631193370020", "name": "Venda | [MENSAGEM] [WHATSAPP] [MISTO]", "objective": "OUTCOME_ENGAGEMENT", "ads": [{"id": "120244662920220020", "name": "AD77 - Reels vestido canelado", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/656035815_2440994099656557_7221633187282674716_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeFTVLURPck6CLZ3iD40s86Sff2Vy7dPoSV9_ZXLt0-hJbSeuvFMs8QLDETj9zj55A3FnDaAXoA-VdnpdjXBi9BT&_nc_ohc=4popT2hW0_cQ7kNvwGF8NCs&_nc_oc=AdrEIflNxw4Qtd0Wel4LcdtH0yAhrI3XffnZxzBI3eE0lvfJL5OIPGzditu89R1EPe-1Iz3KSWNwQ0IfRDwvFrER&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQFgH6UIYkjqEAj1e12te0TA8DBZspyq2527Q-p1fWJiKlN2FhuJbFF1_EehX20nCmCwkt2mY_LKhg&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyvK8D9LogDdvV_13fMax2bfSg54j07X05tY9ttuTdZ0Q&oe=69CD05A1", "link": "https://www.facebook.com/160591770778946/posts/1578674224260602", "is_video": true}, {"id": "120244662828960020", "name": "AD76 - Reels Conjunto Plus", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/661431410_806677275826924_8586280280235332323_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeEH-lLLY59yywa9HerCfSm3pvIe8aNkGiOm8h7xo2QaI4eHwca4qUnfAA_b9H493wRRYd6FEYcqr5jk1QU5ouew&_nc_ohc=EA8RWixNx8oQ7kNvwGpPw1X&_nc_oc=Adr3XxMausQMHmxpWOJjBM96Og8waTKSCGSgUP_C8QUDYG9Zq_ZHpqw2jvxSg0vTwCAYpP4IDy4rDnDC0exn83-v&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQEr8Vbs0zbJl2pRYkbzODPwrRMnT5eyt9Oz8j35gMAooE4JGkjYAbN4PqpUJ3uAnoy44i8yZeskYg&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfyxCEFPqpdsiG9nggTfjChgOhi0dw9QV5njewy2sFEChA&oe=69CD218E", "link": "https://www.facebook.com/160591770778946/posts/1578674244260600", "is_video": true}, {"id": "120244662969590020", "name": "AD76 - Reels Conjunto Plus", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/661431410_806677275826924_8586280280235332323_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeEH-lLLY59yywa9HerCfSm3pvIe8aNkGiOm8h7xo2QaI4eHwca4qUnfAA_b9H493wRRYd6FEYcqr5jk1QU5ouew&_nc_ohc=EA8RWixNx8oQ7kNvwGpPw1X&_nc_oc=Adr3XxMausQMHmxpWOJjBM96Og8waTKSCGSgUP_C8QUDYG9Zq_ZHpqw2jvxSg0vTwCAYpP4IDy4rDnDC0exn83-v&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQF_0uuaRTCKAPlK6SjUPtg4CglzUY_Kk_3zER_mwxuelrNvuxIBSIOMwfKySJMoyUeyd1SDVsmkTA&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz4agO1lKiLvSPD8Ml0kDfBtGaj8kN0v-vwOPaI0bp-aA&oe=69CD218E", "link": "https://www.facebook.com/160591770778946/posts/1578674270927264", "is_video": true}, {"id": "120244662969570020", "name": "AD77 - Reels vestido canelado", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/656035815_2440994099656557_7221633187282674716_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeFTVLURPck6CLZ3iD40s86Sff2Vy7dPoSV9_ZXLt0-hJbSeuvFMs8QLDETj9zj55A3FnDaAXoA-VdnpdjXBi9BT&_nc_ohc=4popT2hW0_cQ7kNvwGF8NCs&_nc_oc=AdrEIflNxw4Qtd0Wel4LcdtH0yAhrI3XffnZxzBI3eE0lvfJL5OIPGzditu89R1EPe-1Iz3KSWNwQ0IfRDwvFrER&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQEUpQxV8uvQYYnBXMCXpfMl6PkMmj8a4O0-3IKxMDoWILSGjneo1f0S7T0eOTU2Y6BkzyMBWupwCw&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzPkO0pCOO3v1RMLcoElgvSOCFuUAH8Nj5ROTMG0531Xw&oe=69CD05A1", "link": "https://www.facebook.com/160591770778946/posts/1578674267593931", "is_video": true}, {"id": "120244662956930020", "name": "AD78 - Reels moda praia", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/658331868_918558234477707_6001749723922100840_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeE2spnHV9VWUm1ifhF_mlJXxsX43Fyya5jGxfjcXLJrmOE8W44KsslnTmPSzqvbo1-50VzvmvS68OOTR5UwO6Fm&_nc_ohc=ZYDJEx6gjtMQ7kNvwEnHS3v&_nc_oc=AdpJHQSaTh9ZS8yo5fpLwCShEdqSBn2l-NRyf2ACMFnEcnEzmhRDsPG6ElNOJGIg0gvFh-P_0bPa-h5MuC_oxQaR&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQFC_wPh4Wm2SWF1pIsDEyJPGyrGUfrJsdn80YUYFyjiid6B4ZEnVc-iCN_vfOeG4K69GXKOj1ni0Q&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afzf6a1j1if4gpAHd4O5N_SQZP96qNH3q-YhOsFoPOOK1w&oe=69CD074D", "link": "https://www.facebook.com/160591770778946/posts/1578674237593934", "is_video": true}, {"id": "120244662969580020", "name": "AD78 - Reels moda praia", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/658331868_918558234477707_6001749723922100840_n.jpg?_nc_cat=108&ccb=1-7&_nc_eui2=AeE2spnHV9VWUm1ifhF_mlJXxsX43Fyya5jGxfjcXLJrmOE8W44KsslnTmPSzqvbo1-50VzvmvS68OOTR5UwO6Fm&_nc_ohc=ZYDJEx6gjtMQ7kNvwEnHS3v&_nc_oc=AdpJHQSaTh9ZS8yo5fpLwCShEdqSBn2l-NRyf2ACMFnEcnEzmhRDsPG6ElNOJGIg0gvFh-P_0bPa-h5MuC_oxQaR&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQEoZGC3GZOQBsr9wY-5oRl5IRKGSt7VX4v3aJCuifVW91cUAfZyMVJtz6ELS1qnHOSq_JVmosE-tw&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afx6RUAhQ_9bhuNg5L9xNwxM6I7NWupuNbIsbsibIqtlgg&oe=69CD074D", "link": "https://www.facebook.com/160591770778946/posts/1578674230927268", "is_video": true}, {"id": "120244032176860020", "name": "AD75 - Reels calça", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/650731899_1220794283552279_5309704534378694952_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeHoGG_EnkN80ImKPa7-e0Z_7Oaz2lDN5A3s5rPaUM3kDX1xfAHxMWA-DPJzgN-UZO6Xbfb0gC5lNP1KvZLE8qt7&_nc_ohc=YoXO5eMacAIQ7kNvwHvswHj&_nc_oc=Adq5hF2FWE-gINKvl4TIp0qu369CO1CPWoj1G8kJjok85W4ocToAM5C0vbX-AE5pkC-dKCjrJ93-Nxb__LNcvaea&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQH9iFN0aebrBBG2ee11Mlk5A-wZEWYKsaDKI5JP9gfA5K4LVYpdjGFVSjmeZlUxpjURjGtIl6EXqA&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfwFibGFwXeGcZNrw1eZ3wn1YrlV8L5fkcoAwU2eSoVfEA&oe=69CCF941", "link": "https://www.facebook.com/160591770778946/posts/1567878895340135", "is_video": true}, {"id": "120243842637150020", "name": "AD65 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeHRxMAdKnNsF7L6xftsEM2SpCC151FAmN-kILXnUUCY3x1-iFDMzvG5MVLT6u5PIZYWv4qOFlNL8d5O805xc1W4&_nc_ohc=c0jBDPmQ32YQ7kNvwGItD7u&_nc_oc=Adry-Q2FIj54NftV9G4RC1y3i2AWNKtYKqWP3wgfZEVFYihekkqXxzleil2Q_jxg0GzKv_ou8CI_xYKAYtmJ3mAI&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQEsW_oEbd97RU6ollG9DNMsI3DFgGPzUg2LXFZ8P5jL7U52R2ZcY2Ln8NU1vOSIjjie8gUTl0OkJw&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfzU2g59PItauTU7DpOYFEnEF6dJFJ7vJL7GWXHEiLSEQA&oe=69CD228F", "link": "https://www.facebook.com/160591770778946/posts/1564143799046978", "is_video": true}, {"id": "120243842622040020", "name": "AD69 - Reels vestido", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/649757155_1636003317815773_6933619796832685347_n.jpg?_nc_cat=103&ccb=1-7&_nc_eui2=AeH2pJ6rWE2hU5GRiQvhVAFWggS2R2PupXyCBLZHY-6lfEbfmCaFIcuXOtYQf4fsY1H6MEV6BGWRclH52hVoy68H&_nc_ohc=V6v9VWzne2UQ7kNvwH25hd1&_nc_oc=AdpN2fUDcZul-F1Mj4NotmGZjxqCIg1eHeKOqOTP6UM4bufhW56OYxzeIy05mILftxwuvG7inK0yb4ddYEsDyawf&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQGuO04-qhYDnQC5wCwADhwiiGC5uD-hgQpOscVbIsH6I8iWh1z4yo0eLfO7xEQAGNo6zR4dEppRUg&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxWDIdRbUeuIyPgzCNIUBiPiWvCXM1EzTLAjFFxiUD_og&oe=69CD1961", "link": "https://www.facebook.com/160591770778946/posts/1564143832380308", "is_video": true}, {"id": "120243842576490020", "name": "AD66 - Reels Brasil", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649689862_4179234555661055_4835765438756700913_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeE_IT6JoJREdU4dY2UYbPDpGeX9UNeUBtwZ5f1Q15QG3Lc3DDx6gaiKtnq7hVBo34uWs5Zl4jqka8YZI808pPpt&_nc_ohc=-Zg2CGiNkQMQ7kNvwHzVMVi&_nc_oc=AdpsKHnQ7-KcxFtAqd1r8Y2vwxlqnjUlCCbBdJ3hPrENr0TIyAA9HJrj3SxGiL0f6i-lgwqxZuPV36Q9rg5TMcnk&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQF-VqTtuubhl5lLEjwVVddlwN3Ph0bgWlb8hlCD6Tl7-mfg7KSYyXwO5NBxL0LcsPzkF46sJL2-Dw&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz9ehrVLXGsWCEjmhFnSP_umSqlFRnMnGsHAL1LoIh4MA&oe=69CD04C6", "link": "https://www.facebook.com/160591770778946/posts/1564143822380309", "is_video": true}, {"id": "120243842499420020", "name": "AD65 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649730621_2300219263798571_8030560928359027279_n.jpg?_nc_cat=110&ccb=1-7&_nc_eui2=AeHRxMAdKnNsF7L6xftsEM2SpCC151FAmN-kILXnUUCY3x1-iFDMzvG5MVLT6u5PIZYWv4qOFlNL8d5O805xc1W4&_nc_ohc=c0jBDPmQ32YQ7kNvwGItD7u&_nc_oc=Adry-Q2FIj54NftV9G4RC1y3i2AWNKtYKqWP3wgfZEVFYihekkqXxzleil2Q_jxg0GzKv_ou8CI_xYKAYtmJ3mAI&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQGe1FPlc1LqV16ESgj3T6N2eh3qPXzLg4817Uekl6u6re8vy9wbPd-HUQHwunHYwg7nljZBuTC75w&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afwxl_4y27axgNNvhog-h7MrEwCEhiGFIYxk-uJsgYv73g&oe=69CD228F", "link": "https://www.facebook.com/160591770778946/posts/1564143819046976", "is_video": true}, {"id": "120243842593150020", "name": "AD67 - Reels biquini", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeE7WDelTjaVdpyHsLQIjdPWN_E8MXYeG2U38Twxdh4bZS_emfqtEHcOCmdxGbVfzqq4GKTu-QdySEUDSvzpuC5y&_nc_ohc=4OWIYk7FgCMQ7kNvwEaWtBS&_nc_oc=AdqoLXq71cdxVv8IiHX66TtInqXxAQMxoXV59lUEyHcrlFIxsFSRflQnlbysoc6E9h3fw5mwJyVDrA05ikuVX23q&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQHBUZ7DVNkqjKCXmjfejyxyRacIULiNO2sizut9AXlOqQWAImdbwUd-yYhMzIUxfd8Ao0vU3CKNJw&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz23FydTvzxNZLOD_c30h3YEo4eO0rHn8jrRSt67luHuw&oe=69CD0D2E", "link": "https://www.facebook.com/160591770778946/posts/1564143892380302", "is_video": true}, {"id": "120243842637160020", "name": "AD67 - Reels biquini", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/649511795_1420923736437367_503306948193197051_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeE7WDelTjaVdpyHsLQIjdPWN_E8MXYeG2U38Twxdh4bZS_emfqtEHcOCmdxGbVfzqq4GKTu-QdySEUDSvzpuC5y&_nc_ohc=4OWIYk7FgCMQ7kNvwEaWtBS&_nc_oc=AdqoLXq71cdxVv8IiHX66TtInqXxAQMxoXV59lUEyHcrlFIxsFSRflQnlbysoc6E9h3fw5mwJyVDrA05ikuVX23q&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQFWulq1zX3G67avQwVL7MH4MGA1dzTOWpeo-n-SBrWLdBsPXU3ouujfmqFu2XU5FKH1c05FOipi2A&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afz4bacHfdMOuWeHtIB21ksLPwtWIVIKMZkRsuWaAZw2Iw&oe=69CD0D2E", "link": "https://www.facebook.com/160591770778946/posts/1564143825713642", "is_video": true}, {"id": "120243363963600020", "name": "AD72 - Reels Aero Look", "image_url": "https://scontent-for2-2.xx.fbcdn.net/v/t15.5256-10/628811344_1246551274149941_2499663932562250045_n.jpg?_nc_cat=105&ccb=1-7&_nc_eui2=AeFoCdOjsYQPAVHaPI0E-sb7ltHQvAMheqqW0dC8AyF6qkJS937roH3cMk_IuLBa3y67QbI9PmnVpPNoNHAcgrGR&_nc_ohc=AN6hV9sxFEcQ7kNvwGSDitG&_nc_oc=Adofz04bLeDj20mg3Lm6UM-Fn3qfD6k6NYPluxeEts2HT4ZHfriPPpFgJxHoPlTPUkFZZAADPOPfCO0mBfRasqmQ&_nc_zt=23&_nc_ht=scontent-for2-2.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQG_RUrVAB21NF12nuM7SKYHUTY5IAnG4h5wCr-Qa2ARONwXPFMW0C3pMJSxtM7ydh94Hbv_DYztdw&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Afxct6nXgCdMsZ3bG62mBTag1yqrmmBpCnyINQgxoKeQ6A&oe=69CCFE88", "link": "https://www.facebook.com/160591770778946/posts/1555484143246277", "is_video": true}, {"id": "120243364767360020", "name": "AD73 - Reels calça jeans", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637861561_897163246286272_8314184760367439810_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeE2-L_E00w8ZKt691nRdv5jKkN0itrV5VAqQ3SK2tXlULPlqy-mJnQndi0Q9HCi8FKLxd00L8t4EmKoRkcl0bi1&_nc_ohc=FrCzeM1ngJUQ7kNvwHs9R_5&_nc_oc=AdoNbBwGq6Wyu039qF8atMtVE9eLAlzuVrBGafFkiYbOWmi-5AeQpPSWdkjcS5HV2pK9xDkt7VWWE6_yPUk0XJli&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQEqlBuHu_WplB9cQJmd57q2tW-3Dp3ILjoCn8-wZH9j2W9B60r6aUcolbmO2A-61TBV9RT4cMnyig&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxkyeFx8cbuPootuYUwtcvYHwMVeq60n23Swky-cO-p8w&oe=69CCF7DE", "link": "https://www.facebook.com/160591770778946/posts/1555484129912945", "is_video": true}, {"id": "120235688031640020", "name": "AD14 - Reels blusa em crepe", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.13418-10/566566632_716581460696588_3649711858675149011_n.jpg?_nc_cat=104&ccb=1-7&_nc_eui2=AeEqqyIZJcafxon3xlRf-dYNjtLU0TgUPniO0tTROBQ-eAqyfeJtlEfMB-5J4ZoUesvNo75usMgV81nrjqKSJqhp&_nc_ohc=UNqe_3rcq0EQ7kNvwH1ZRaQ&_nc_oc=AdoLoln2Rn9GuQ-T0mVPSqTUrFe7ivKTPgwQ_m_uTcW5vXgECc5z_YbTfHGUeBTT45675rSRe0YUdMbN0Tq78rR7&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQEltkp69TXOibDrvpapU9VUZrHTXnr70zLWCCw4egT05dT2PxH9_pmZsNhXWkv4EQeNjc4NpZ7AAw&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=aaa768&_nc_sid=58080a&oh=00_AfwZMkzd2pDm_qVfI0wAo9osjduNTU3DTX_vbhHoSYKIOw&oe=69CD0B37", "link": "https://www.facebook.com/160591770778946/posts/1430818329046193", "is_video": true}, {"id": "120235688031690020", "name": "AD13 - Reels macacão patricia", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/561618054_1169833555010573_1429729776748049899_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeGzRHDubr1A2sDT9malVsuRg8nAfY9wuguDycB9j3C6C7fgUfWzvoE9jbrZTyOol7mR1oSxg9zoFKcbMElQTEKS&_nc_ohc=6G5XN-nFDVYQ7kNvwGYWGTg&_nc_oc=AdpyKzB-ikdsSaCF0io_GouXgSYx6KdPFes0jUUgec3SHREWff7Ve9DKF1qvCclBzQlWfxDUbwCYknpTZ2lHHHWm&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQHDwZCYDHvOxj1GGrI0CWQ0HXCEMQmpXD4SidvOWpAnQPVcL7mhRhufecnQRDCKWxCTyb1DmKcFow&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfwS-5xyrrONw6uAA7jju00UbQStN7cEk7i1pwEVWnhl6A&oe=69CCFB42", "link": "https://www.facebook.com/160591770778946/posts/1169833511677244", "is_video": true}]}, {"id": "120236234071130020", "name": "Captação | [LEAD] [QUENTE] [ 4º GRUPO VIP]", "objective": "OUTCOME_LEADS", "ads": [{"id": "120242234861820020", "name": "AD03 - Reels grupo vip", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/626154347_929943102814974_4907290852568821446_n.jpg?_nc_cat=101&ccb=1-7&_nc_eui2=AeH5Mp-E-J8eusXU_ZSUxutwuonwyr6E9EG6ifDKvoT0QSt6NwysHc5JIHccb2j1iqoQ4uVnfmcg6JucL0B1IoIC&_nc_ohc=61L9ixA6jCIQ7kNvwHLxk2E&_nc_oc=Adpl3nnrVYBiOc912_uV67wPSqXkOfNuLyZ1cBS6k6qZgQuelbJOrFTCaNT_oc_h0ipLBQI299rW68nYWzgD67Jj&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQFM3fzyg5jlU_xs9YD1fmtmbIynv6H9W-la7ed0Z1VaZnKZ_F4ZpSrEcYdUhCKAyC2maVgiWgHxXA&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AfxLJ3W3Zrmy6UtZlWh_Gg1pmIapcHpRsbY5FPsHgLFnhA&oe=69CD2591", "link": "https://www.facebook.com/160591770778946/posts/1532190298908995", "is_video": true}]}, {"id": "120233662651250020", "name": "Relacionamento | [VIDEOVIEW] [FRIO] [LOCALIZAÇÃO]", "objective": "OUTCOME_ENGAGEMENT", "ads": [{"id": "120243162966410020", "name": "AD07 - Reels localização", "image_url": "https://scontent-for2-1.xx.fbcdn.net/v/t15.5256-10/637882998_2007366930160828_319968532192488573_n.jpg?_nc_cat=106&ccb=1-7&_nc_eui2=AeHM5DCQFY_jXVb1K-Wgyt28b73_dLf_Jw5vvf90t_8nDhXJ-JZzZH9EGJo9yCpmj3zWE1nRcUrGVgIgJ642govb&_nc_ohc=Ch1wmQcOO2IQ7kNvwGxyB2a&_nc_oc=AdpPleKfRYLfrCBTnjzsURTmbxTp0skny_xBFJHli5W3am1HYunUnr1R6Tb1b0GVos-rRc254QAXOfXT6jlmFxFL&_nc_zt=23&_nc_ht=scontent-for2-1.xx&edm=AOgd6ZUEAAAA&_nc_gid=lFcCxEPLszDZU8Uuou9PcA&_nc_tpa=Q5bMBQEZuE4b7k1tiTRSTTqnIkKxXbvloXJfbb0LLIXQvoQv407-GUAWMj82tMWYp3JqI5dbybiKGzHC9Q&stp=c0.5000x0.5000f_dst-jpg_p720x720_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AfxSkojtzEGVDaKq9xEkiEtfjREoCAG-Vevl9c_pxxmguw&oe=69CD17CF", "link": "https://www.facebook.com/160591770778946/posts/2007366913494163", "is_video": true}]}];
 const ICONS = ['🎯','📣','🔥','⚡','💡','🚀','🎪'];
 const OBJ = {
   'LINK_CLICKS':'Cliques no link','OUTCOME_TRAFFIC':'Tráfego',
@@ -156,30 +171,36 @@ const OBJ = {
   'OUTCOME_LEADS':'Leads','OUTCOME_SALES':'Vendas'
 };
 
+const PLAY_ICON = `<div class="play-overlay"><div class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>`;
+const EXT_ICON  = `<svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>`;
+
 CAMPS.forEach((camp, idx) => {
   const obj  = OBJ[camp.objective] || camp.objective;
   const icon = ICONS[idx % ICONS.length];
+
   const adsHTML = camp.ads.length === 0
     ? '<div style="padding:24px;text-align:center;color:#888899">🖼️ Nenhum criativo</div>'
-    : camp.ads.map(ad => `
-        <div class="ad-card">
-          <div class="ad-thumb">
-            ${ad.image_url
-              ? `<img src="${ad.image_url}" alt="${ad.name}" onerror="this.parentNode.innerHTML='<div class=\'ad-thumb-placeholder\'>🖼️</div>'">`
-              : '<div class="ad-thumb-placeholder">🖼️</div>'
-            }
-          </div>
-          <div class="ad-info">
-            <div class="ad-name">${ad.name}</div>
-          </div>
-          ${ad.link
-            ? `<a class="btn-ver" href="${ad.link}" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-                Ver no Facebook
-              </a>`
-            : ''
-          }
-        </div>`).join('');
+    : camp.ads.map(ad => {
+        const thumbHTML = ad.image_url
+          ? `<img src="${ad.image_url}" alt="${ad.name}" onerror="this.style.display='none'">`
+          : `<div class="ad-thumb-placeholder">🖼️</div>`;
+
+        const playHTML = ad.is_video ? PLAY_ICON : '';
+
+        const thumbClick = ad.link
+          ? `onclick="window.open('${ad.link}','_blank')" style="cursor:pointer"`
+          : '';
+
+        const btnHTML = ad.link
+          ? `<a class="btn-ver" href="${ad.link}" target="_blank">${EXT_ICON} ${ad.is_video ? 'Ver vídeo no Facebook' : 'Ver no Facebook'}</a>`
+          : '';
+
+        return `<div class="ad-card">
+          <div class="ad-thumb" ${thumbClick}>${thumbHTML}${playHTML}</div>
+          <div class="ad-info"><div class="ad-name">${ad.name}</div></div>
+          ${btnHTML}
+        </div>`;
+      }).join('');
 
   const el = document.createElement('div');
   el.className = 'campaign-card';
